@@ -2,6 +2,12 @@ import React, { useState } from "react";
 import "./App.css";
 import doctors from "./doctors.json";
 import { motion, AnimatePresence } from "framer-motion";
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/700.css";
+
+function getFirstName(fullName) {
+  return fullName.split(" ")[0].toLowerCase();
+}
 
 function App() {
   const [query, setQuery] = useState("");
@@ -9,24 +15,36 @@ function App() {
   const [selected, setSelected] = useState(null);
   const [showPrompt, setShowPrompt] = useState(false);
   const [emailTo, setEmailTo] = useState("");
+  const [messages, setMessages] = useState([
+    { sender: "bot", text: "Hi! You can ask about office hours, professors, days, or departments." }
+  ]);
 
   const handleSearch = (e) => {
-    const value = e.target.value;
-    setQuery(value);
+    setQuery(e.target.value);
+  };
+
+  const handleSend = (e) => {
+    e.preventDefault();
+    if (!query.trim()) return;
+    const userMsg = { sender: "user", text: query };
+    setMessages((msgs) => [...msgs, userMsg]);
+    // Find matches by first name
+    const found = doctors.filter((doc) => getFirstName(doc.name) === query.trim().toLowerCase());
+    setQuery("");
     setSelected(null);
-    if (value.trim() === "") {
-      setMatches([]);
-      return;
-    }
-    const found = doctors.filter((doc) =>
-      doc.firstName.toLowerCase() === value.trim().toLowerCase()
-    );
     setMatches(found);
+    if (found.length === 0) {
+      setMessages((msgs) => [...msgs, { sender: "bot", text: "Sorry, I could not understand your question." }]);
+    } else if (found.length === 1) {
+      setMessages((msgs) => [...msgs, { sender: "bot", doc: found[0] }]);
+    } else {
+      setMessages((msgs) => [...msgs, { sender: "bot", options: found }]);
+    }
   };
 
   const handleSelect = (doc) => {
     setSelected(doc);
-    setMatches([doc]);
+    setMessages((msgs) => [...msgs, { sender: "bot", doc }]);
   };
 
   const handleEmailClick = (email) => {
@@ -41,102 +59,118 @@ function App() {
     }
   };
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-200 flex flex-col items-center justify-start py-10">
-      <img src="/athar-logo.png" alt="Athar Bot Logo" className="w-24 h-24 mb-4 drop-shadow-lg animate-fade-in" />
-      <h1 className="text-4xl font-extrabold text-blue-900 mb-2 animate-fade-in">Athar Bot</h1>
-      <p className="text-lg text-blue-700 mb-8 animate-fade-in delay-100">Type the first name of the doctor</p>
-      <input
-        type="text"
-        value={query}
-        onChange={handleSearch}
-        placeholder="Enter first name..."
-        className="px-4 py-2 rounded-lg border border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-400 transition mb-6 w-72 text-lg shadow animate-fade-in delay-200"
-      />
-      {/* Animated list of matches */}
-      <AnimatePresence>
-      {matches.length > 1 && !selected && (
-        <motion.div
-          className="w-80 bg-white rounded-xl shadow-lg p-4 space-y-2 animate-fade-in delay-300"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 30 }}
-          transition={{ duration: 0.4 }}
-        >
-          <p className="text-blue-800 font-semibold mb-2">Multiple doctors found:</p>
-          {matches.map((doc) => (
-            <motion.button
-              key={doc.id}
-              onClick={() => handleSelect(doc)}
-              className="w-full text-left px-4 py-2 rounded-lg hover:bg-blue-100 transition font-medium text-blue-700"
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.98 }}
-              layout
-            >
-              {doc.firstName} {doc.lastName} <span className="text-xs text-blue-400">({doc.specialty})</span>
-            </motion.button>
+  const renderOfficeHours = (office_hours) => {
+    if (!office_hours) return null;
+    return (
+      <div className="mt-2">
+        <h3 className="font-semibold text-blue-200 mb-1">Office Hours:</h3>
+        <ul className="text-blue-100 text-sm space-y-1">
+          {Object.entries(office_hours).map(([day, hours]) => (
+            <li key={day}><span className="font-medium">{day}:</span> {hours}</li>
           ))}
-        </motion.div>
-      )}
-      </AnimatePresence>
-      {/* Show doctor data */}
-      <AnimatePresence>
-      {matches.length === 1 && (selected || matches[0]) && (
-        <motion.div
-          className="w-80 bg-white rounded-xl shadow-xl p-6 mt-6 animate-fade-in delay-400"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 30 }}
-          transition={{ duration: 0.4 }}
-        >
-          <h2 className="text-2xl font-bold text-blue-900 mb-2">
-            {selected ? `${selected.firstName} ${selected.lastName}` : `${matches[0].firstName} ${matches[0].lastName}`}
-          </h2>
-          <p className="text-blue-700 mb-1">Specialty: {selected ? selected.specialty : matches[0].specialty}</p>
-          <p className="text-blue-700 mb-1">Phone: {selected ? selected.phone : matches[0].phone}</p>
-          <button
-            className="text-blue-600 underline hover:text-blue-800 transition font-semibold"
-            onClick={() => handleEmailClick(selected ? selected.email : matches[0].email)}
-          >
-            {selected ? selected.email : matches[0].email}
-          </button>
-        </motion.div>
-      )}
-      </AnimatePresence>
-      {/* Outlook prompt modal */}
-      <AnimatePresence>
-      {showPrompt && (
-        <motion.div
-          className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50 animate-fade-in"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-        >
-          <motion.div
-            className="bg-white rounded-xl p-8 shadow-2xl text-center"
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.8, opacity: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            <p className="text-lg mb-4">Do you want to open Outlook to email this doctor?</p>
-            <div className="flex justify-center gap-4">
-              <button
-                className="px-6 py-2 bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700 transition"
-                onClick={() => handlePrompt(true)}
-              >
-                Yes
-              </button>
-              <button
-                className="px-6 py-2 bg-gray-200 text-blue-700 rounded-lg font-bold hover:bg-gray-300 transition"
-                onClick={() => handlePrompt(false)}
-              >
-                No
-              </button>
+        </ul>
+      </div>
+    );
+  };
+
+  return (
+    <div className="athar-chat-container">
+      <div className="athar-header">
+        <img src="/athar-logo.png" alt="Athar Bot Logo" className="athar-header-logo" />
+        <span className="athar-header-title">Atharbot</span>
+        <span className="athar-header-moon">🌙</span>
+      </div>
+      <div className="athar-chat">
+        {messages.map((msg, idx) =>
+          msg.sender === "user" ? (
+            <div key={idx} className="athar-bubble-user">{msg.text}</div>
+          ) : msg.options ? (
+            <div key={idx} className="athar-bubble-bot">
+              <div>Multiple professors found:</div>
+              {msg.options.map((doc, i) => (
+                <button
+                  key={doc.email + i}
+                  onClick={() => handleSelect(doc)}
+                  style={{
+                    display: "block",
+                    background: "#35363a",
+                    color: "#fff",
+                    border: "none",
+                    borderRadius: 8,
+                    padding: "8px 12px",
+                    margin: "8px 0",
+                    width: "100%",
+                    textAlign: "left",
+                    cursor: "pointer"
+                  }}
+                >
+                  {doc.name} <span style={{ color: "#e74c3c", fontSize: 12 }}>({doc.department})</span>
+                </button>
+              ))}
             </div>
+          ) : msg.doc ? (
+            <div key={idx} className="athar-bubble-bot">
+              <div className="font-bold text-lg mb-1">{msg.doc.name}</div>
+              <div className="mb-1"><span className="font-semibold">School:</span> {msg.doc.school}</div>
+              <div className="mb-1"><span className="font-semibold">Department:</span> {msg.doc.department}</div>
+              <div className="mb-1"><span className="font-semibold">Office:</span> {msg.doc.office}</div>
+              <button
+                className="text-blue-200 underline hover:text-blue-400 transition font-semibold mb-2"
+                style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}
+                onClick={() => handleEmailClick(msg.doc.email)}
+              >
+                {msg.doc.email}
+              </button>
+              {renderOfficeHours(msg.doc.office_hours)}
+            </div>
+          ) : (
+            <div key={idx} className="athar-bubble-bot">{msg.text}</div>
+          )
+        )}
+      </div>
+      <form className="athar-input-row" onSubmit={handleSend} autoComplete="off">
+        <input
+          className="athar-input"
+          type="text"
+          value={query}
+          onChange={handleSearch}
+          placeholder="Ask anything about office hours, professors, days, or departments."
+        />
+        <button className="athar-send-btn" type="submit">Send</button>
+      </form>
+      <AnimatePresence>
+        {showPrompt && (
+          <motion.div
+            className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50 animate-fade-in"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div
+              className="bg-white rounded-xl p-8 shadow-2xl text-center"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <p className="text-lg mb-4">Do you want to open Outlook to email this professor?</p>
+              <div className="flex justify-center gap-4">
+                <button
+                  className="px-6 py-2 bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700 transition"
+                  onClick={() => handlePrompt(true)}
+                >
+                  Yes
+                </button>
+                <button
+                  className="px-6 py-2 bg-gray-200 text-blue-700 rounded-lg font-bold hover:bg-gray-300 transition"
+                  onClick={() => handlePrompt(false)}
+                >
+                  No
+                </button>
+              </div>
+            </motion.div>
           </motion.div>
-        </motion.div>
-      )}
+        )}
       </AnimatePresence>
     </div>
   );

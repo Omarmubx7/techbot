@@ -1,3 +1,6 @@
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/700.css";
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -50,4 +53,116 @@
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: none; }
+}
+
+body {
+  background: #181a20;
+  font-family: 'Inter', sans-serif;
+}
+
+.athar-chat-container {
+  background: #23252b;
+  border-radius: 24px;
+  width: 410px;
+  margin: 48px auto;
+  box-shadow: 0 6px 32px rgba(0,0,0,0.22);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 600px;
+}
+.athar-header {
+  background: #e74c3c;
+  color: #fff;
+  padding: 22px 28px 12px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0 0 24px 24px;
+  min-height: 70px;
+}
+.athar-header-logo {
+  width: 38px;
+  height: 38px;
+  margin-right: 14px;
+}
+.athar-header-title {
+  font-size: 2.1rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-right: 8px;
+}
+.athar-header-moon {
+  font-size: 1.5rem;
+  margin-left: auto;
+  margin-top: 2px;
+}
+.athar-chat {
+  padding: 28px 24px 18px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  flex: 1;
+}
+.athar-bubble-user {
+  align-self: flex-start;
+  background: #e74c3c;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 18px 18px 18px 6px;
+  font-weight: 600;
+  font-size: 1.08rem;
+  margin-bottom: 4px;
+  max-width: 70%;
+  box-shadow: 0 2px 8px rgba(231,76,60,0.08);
+}
+.athar-bubble-bot {
+  align-self: flex-end;
+  background: #23252b;
+  color: #fff;
+  padding: 14px 20px;
+  border-radius: 18px 18px 6px 18px;
+  font-size: 1.08rem;
+  margin-bottom: 4px;
+  max-width: 80%;
+  border: 1px solid #35363a;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.athar-input-row {
+  display: flex;
+  align-items: center;
+  background: #23252b;
+  padding: 18px 24px;
+  border-top: 1px solid #35363a;
+}
+.athar-input {
+  flex: 1;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  background: #181a20;
+  color: #fff;
+  font-size: 1rem;
+  margin-right: 12px;
+  outline: none;
+  box-shadow: none;
+  transition: border 0.2s;
+}
+.athar-input:focus {
+  border: 1.5px solid #e74c3c;
+}
+.athar-send-btn {
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 24px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  box-shadow: 0 2px 8px rgba(231,76,60,0.08);
+}
+.athar-send-btn:hover {
+  background: #c0392b;
 }
