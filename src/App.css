@@ -55,13 +55,30 @@
   to { opacity: 1; transform: none; }
 }
 
+:root {
+  --athar-bg: #181a20;
+  --athar-chat-bg: #23252b;
+  --athar-header-bg: #e74c3c;
+  --athar-header-color: #fff;
+  --athar-bubble-user-bg: #e74c3c;
+  --athar-bubble-user-color: #fff;
+  --athar-bubble-bot-bg: #23252b;
+  --athar-bubble-bot-color: #fff;
+  --athar-input-bg: #181a20;
+  --athar-input-color: #fff;
+  --athar-send-btn-bg: #e74c3c;
+  --athar-send-btn-color: #fff;
+  --athar-border: #35363a;
+}
+
 body {
-  background: #181a20;
+  background: var(--athar-bg);
   font-family: 'Inter', sans-serif;
+  transition: background 0.3s;
 }
 
 .athar-chat-container {
-  background: #23252b;
+  background: var(--athar-chat-bg);
   border-radius: 24px;
   width: 410px;
   margin: 48px auto;
@@ -70,16 +87,48 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 600px;
+  transition: background 0.3s;
+}
+.athar-chat-container.dark {
+  --athar-bg: #181a20;
+  --athar-chat-bg: #23252b;
+  --athar-header-bg: #e74c3c;
+  --athar-header-color: #fff;
+  --athar-bubble-user-bg: #e74c3c;
+  --athar-bubble-user-color: #fff;
+  --athar-bubble-bot-bg: #23252b;
+  --athar-bubble-bot-color: #fff;
+  --athar-input-bg: #181a20;
+  --athar-input-color: #fff;
+  --athar-send-btn-bg: #e74c3c;
+  --athar-send-btn-color: #fff;
+  --athar-border: #35363a;
+}
+.athar-chat-container:not(.dark) {
+  --athar-bg: #f7f7f9;
+  --athar-chat-bg: #fff;
+  --athar-header-bg: #e74c3c;
+  --athar-header-color: #fff;
+  --athar-bubble-user-bg: #e74c3c;
+  --athar-bubble-user-color: #fff;
+  --athar-bubble-bot-bg: #f3f3f7;
+  --athar-bubble-bot-color: #23252b;
+  --athar-input-bg: #fff;
+  --athar-input-color: #23252b;
+  --athar-send-btn-bg: #e74c3c;
+  --athar-send-btn-color: #fff;
+  --athar-border: #e0e0e0;
 }
 .athar-header {
-  background: #e74c3c;
-  color: #fff;
+  background: var(--athar-header-bg);
+  color: var(--athar-header-color);
   padding: 22px 28px 12px 28px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-radius: 0 0 24px 24px;
   min-height: 70px;
+  transition: background 0.3s, color 0.3s;
 }
 .athar-header-logo {
   width: 38px;
@@ -96,6 +145,11 @@ body {
   font-size: 1.5rem;
   margin-left: auto;
   margin-top: 2px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.athar-header-moon:hover {
+  color: #ffd700;
 }
 .athar-chat {
   padding: 28px 24px 18px 24px;
@@ -106,8 +160,8 @@ body {
 }
 .athar-bubble-user {
   align-self: flex-start;
-  background: #e74c3c;
-  color: #fff;
+  background: var(--athar-bubble-user-bg);
+  color: var(--athar-bubble-user-color);
   padding: 10px 20px;
   border-radius: 18px 18px 18px 6px;
   font-weight: 600;
@@ -115,54 +169,77 @@ body {
   margin-bottom: 4px;
   max-width: 70%;
   box-shadow: 0 2px 8px rgba(231,76,60,0.08);
+  transition: background 0.3s, color 0.3s;
 }
 .athar-bubble-bot {
   align-self: flex-end;
-  background: #23252b;
-  color: #fff;
+  background: var(--athar-bubble-bot-bg);
+  color: var(--athar-bubble-bot-color);
   padding: 14px 20px;
   border-radius: 18px 18px 6px 18px;
   font-size: 1.08rem;
   margin-bottom: 4px;
   max-width: 80%;
-  border: 1px solid #35363a;
+  border: 1px solid var(--athar-border);
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: background 0.3s, color 0.3s, border 0.3s;
 }
 .athar-input-row {
   display: flex;
   align-items: center;
-  background: #23252b;
+  background: var(--athar-chat-bg);
   padding: 18px 24px;
-  border-top: 1px solid #35363a;
+  border-top: 1px solid var(--athar-border);
+  transition: background 0.3s, border 0.3s;
 }
 .athar-input {
   flex: 1;
   padding: 10px 16px;
   border-radius: 8px;
   border: none;
-  background: #181a20;
-  color: #fff;
+  background: var(--athar-input-bg);
+  color: var(--athar-input-color);
   font-size: 1rem;
   margin-right: 12px;
   outline: none;
   box-shadow: none;
-  transition: border 0.2s;
+  transition: border 0.2s, background 0.3s, color 0.3s;
 }
 .athar-input:focus {
   border: 1.5px solid #e74c3c;
 }
 .athar-send-btn {
-  background: #e74c3c;
-  color: #fff;
+  background: var(--athar-send-btn-bg);
+  color: var(--athar-send-btn-color);
   border: none;
   border-radius: 8px;
   padding: 10px 24px;
   font-weight: 700;
   font-size: 1rem;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.2s, color 0.3s;
   box-shadow: 0 2px 8px rgba(231,76,60,0.08);
 }
 .athar-send-btn:hover {
   background: #c0392b;
+}
+@media (max-width: 600px) {
+  .athar-chat-container {
+    width: 100vw;
+    min-width: 0;
+    border-radius: 0;
+    margin: 0;
+    min-height: 100vh;
+  }
+  .athar-header {
+    border-radius: 0;
+    padding: 18px 12px 10px 12px;
+    min-height: 60px;
+  }
+  .athar-chat {
+    padding: 18px 8px 10px 8px;
+  }
+  .athar-input-row {
+    padding: 12px 8px;
+  }
 }

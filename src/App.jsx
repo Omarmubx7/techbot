@@ -2,22 +2,24 @@ import React, { useState } from "react";
 import "./App.css";
 import doctors from "./doctors.json";
 import { motion, AnimatePresence } from "framer-motion";
+import Fuse from "fuse.js";
 import "@fontsource/inter/400.css";
 import "@fontsource/inter/700.css";
 
-function getFirstName(fullName) {
-  return fullName.split(" ")[0].toLowerCase();
-}
+const fuse = new Fuse(doctors, {
+  keys: ["name"],
+  threshold: 0.4, // smart fuzzy matching
+});
 
 function App() {
   const [query, setQuery] = useState("");
-  const [matches, setMatches] = useState([]);
   const [selected, setSelected] = useState(null);
   const [showPrompt, setShowPrompt] = useState(false);
   const [emailTo, setEmailTo] = useState("");
   const [messages, setMessages] = useState([
     { sender: "bot", text: "Hi! You can ask about office hours, professors, days, or departments." }
   ]);
+  const [darkMode, setDarkMode] = useState(true);
 
   const handleSearch = (e) => {
     setQuery(e.target.value);
@@ -28,13 +30,12 @@ function App() {
     if (!query.trim()) return;
     const userMsg = { sender: "user", text: query };
     setMessages((msgs) => [...msgs, userMsg]);
-    // Find matches by first name
-    const found = doctors.filter((doc) => getFirstName(doc.name) === query.trim().toLowerCase());
+    // Fuzzy search for any part of the name
+    const found = fuse.search(query.trim()).map(res => res.item);
     setQuery("");
     setSelected(null);
-    setMatches(found);
     if (found.length === 0) {
-      setMessages((msgs) => [...msgs, { sender: "bot", text: "Sorry, I could not understand your question." }]);
+      setMessages((msgs) => [...msgs, { sender: "bot", text: "Sorry, I could not find any matching professor." }]);
     } else if (found.length === 1) {
       setMessages((msgs) => [...msgs, { sender: "bot", doc: found[0] }]);
     } else {
@@ -73,12 +74,15 @@ function App() {
     );
   };
 
+  // Toggle dark mode
+  const toggleDarkMode = () => setDarkMode((d) => !d);
+
   return (
-    <div className="athar-chat-container">
+    <div className={`athar-chat-container${darkMode ? " dark" : ""}`}>
       <div className="athar-header">
         <img src="/athar-logo.png" alt="Athar Bot Logo" className="athar-header-logo" />
         <span className="athar-header-title">Atharbot</span>
-        <span className="athar-header-moon">🌙</span>
+        <span className="athar-header-moon" onClick={toggleDarkMode} style={{cursor:'pointer'}}>{darkMode ? "🌙" : "☀️"}</span>
       </div>
       <div className="athar-chat">
         {messages.map((msg, idx) =>
