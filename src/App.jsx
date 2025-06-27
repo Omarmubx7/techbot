@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./App.css";
 import doctors from "./doctors.json";
 import { motion, AnimatePresence } from "framer-motion";
@@ -20,6 +20,8 @@ function App() {
     { sender: "bot", text: "Hi! You can ask about office hours, professors, days, or departments." }
   ]);
   const [darkMode, setDarkMode] = useState(true);
+  const [activeOption, setActiveOption] = useState(0);
+  const optionsRef = useRef([]);
 
   const handleSearch = (e) => {
     setQuery(e.target.value);
@@ -30,10 +32,22 @@ function App() {
     if (!query.trim()) return;
     const userMsg = { sender: "user", text: query };
     setMessages((msgs) => [...msgs, userMsg]);
-    // Fuzzy search for any part of the name
-    const found = fuse.search(query.trim()).map(res => res.item);
+    // Fuzzy search for any part of the name, prioritize exact/startsWith
+    let found = fuse.search(query.trim()).map(res => res.item);
+    // Prioritize exact, then startsWith, then fuzzy
+    found = found.sort((a, b) => {
+      const q = query.trim().toLowerCase();
+      const aName = a.name.toLowerCase();
+      const bName = b.name.toLowerCase();
+      if (aName === q) return -1;
+      if (bName === q) return 1;
+      if (aName.startsWith(q)) return -1;
+      if (bName.startsWith(q)) return 1;
+      return 0;
+    });
     setQuery("");
     setSelected(null);
+    setActiveOption(0);
     if (found.length === 0) {
       setMessages((msgs) => [...msgs, { sender: "bot", text: "Sorry, I could not find any matching professor." }]);
     } else if (found.length === 1) {
@@ -77,6 +91,22 @@ function App() {
   // Toggle dark mode
   const toggleDarkMode = () => setDarkMode((d) => !d);
 
+  // Keyboard navigation for options
+  const handleOptionKeyDown = (e, options, idx) => {
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setActiveOption((prev) => (prev + 1) % options.length);
+      optionsRef.current[(idx + 1) % options.length]?.focus();
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setActiveOption((prev) => (prev - 1 + options.length) % options.length);
+      optionsRef.current[(idx - 1 + options.length) % options.length]?.focus();
+    } else if (e.key === "Enter") {
+      e.preventDefault();
+      handleSelect(options[idx]);
+    }
+  };
+
   return (
     <div className={`athar-chat-container${darkMode ? " dark" : ""}`}>
       <div className="athar-header">
@@ -85,35 +115,60 @@ function App() {
         <span className="athar-header-moon" onClick={toggleDarkMode} style={{cursor:'pointer'}}>{darkMode ? "🌙" : "☀️"}</span>
       </div>
       <div className="athar-chat">
+        <AnimatePresence initial={false}>
         {messages.map((msg, idx) =>
           msg.sender === "user" ? (
-            <div key={idx} className="athar-bubble-user">{msg.text}</div>
+            <motion.div
+              key={idx}
+              className="athar-bubble-user"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.32, type: "spring", bounce: 0.2 }}
+            >
+              {msg.text}
+            </motion.div>
           ) : msg.options ? (
-            <div key={idx} className="athar-bubble-bot">
-              <div>Multiple professors found:</div>
+            <motion.div
+              key={idx}
+              className="athar-multi-card"
+              initial={{ opacity: 0, scale: 0.97 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.97 }}
+              transition={{ duration: 0.32, type: "spring", bounce: 0.18 }}
+            >
+              <div className="athar-multi-title">Multiple professors found:</div>
+              <AnimatePresence>
               {msg.options.map((doc, i) => (
-                <button
+                <motion.button
                   key={doc.email + i}
+                  ref={el => optionsRef.current[i] = el}
+                  className={`athar-multi-option${activeOption === i ? " active" : ""}`}
+                  tabIndex={0}
                   onClick={() => handleSelect(doc)}
-                  style={{
-                    display: "block",
-                    background: "#35363a",
-                    color: "#fff",
-                    border: "none",
-                    borderRadius: 8,
-                    padding: "8px 12px",
-                    margin: "8px 0",
-                    width: "100%",
-                    textAlign: "left",
-                    cursor: "pointer"
-                  }}
+                  onKeyDown={e => handleOptionKeyDown(e, msg.options, i)}
+                  whileHover={{ scale: 1.03, boxShadow: "0 2px 12px rgba(231,76,60,0.13)" }}
+                  whileFocus={{ scale: 1.03, boxShadow: "0 2px 12px rgba(231,76,60,0.13)" }}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 20 }}
+                  transition={{ duration: 0.22, type: "spring", bounce: 0.18 }}
                 >
-                  {doc.name} <span style={{ color: "#e74c3c", fontSize: 12 }}>({doc.department})</span>
-                </button>
+                  <span>{doc.name}</span>
+                  <span className="athar-multi-dept">({doc.department})</span>
+                </motion.button>
               ))}
-            </div>
+              </AnimatePresence>
+            </motion.div>
           ) : msg.doc ? (
-            <div key={idx} className="athar-bubble-bot">
+            <motion.div
+              key={idx}
+              className="athar-bubble-bot"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.32, type: "spring", bounce: 0.2 }}
+            >
               <div className="font-bold text-lg mb-1">{msg.doc.name}</div>
               <div className="mb-1"><span className="font-semibold">School:</span> {msg.doc.school}</div>
               <div className="mb-1"><span className="font-semibold">Department:</span> {msg.doc.department}</div>
@@ -126,11 +181,21 @@ function App() {
                 {msg.doc.email}
               </button>
               {renderOfficeHours(msg.doc.office_hours)}
-            </div>
+            </motion.div>
           ) : (
-            <div key={idx} className="athar-bubble-bot">{msg.text}</div>
+            <motion.div
+              key={idx}
+              className="athar-bubble-bot"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.32, type: "spring", bounce: 0.2 }}
+            >
+              {msg.text}
+            </motion.div>
           )
         )}
+        </AnimatePresence>
       </div>
       <form className="athar-input-row" onSubmit={handleSend} autoComplete="off">
         <input
