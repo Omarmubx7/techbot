@@ -241,7 +241,14 @@ const AtharBot: React.FC<AtharBotProps> = ({ onClose }) => {
                   <div style={{ fontWeight: 700, fontSize: 16, marginBottom: 2 }}>{msg.doc.name}</div>
                   <div style={{ fontSize: 13, marginBottom: 2 }}>{msg.doc.department} - {msg.doc.school}</div>
                   <div style={{ fontSize: 13, marginBottom: 2 }}>
-                    Email: <a href={`mailto:${msg.doc.email}?subject=Inquiry from AtharBot`} target="_blank" rel="noopener noreferrer" style={{ color: '#e74c3c', textDecoration: 'underline' }}>{msg.doc.email}</a>
+                    Email: <a
+                      href={`https://outlook.office.com/mail/deeplink/compose?to=${encodeURIComponent(msg.doc.email)}&subject=Inquiry%20from%20AtharBot`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ color: '#e74c3c', textDecoration: 'underline' }}
+                    >
+                      {msg.doc.email}
+                    </a>
                   </div>
                   <div style={{ fontSize: 13, marginBottom: 2 }}>Office: {msg.doc.office}</div>
                   {renderOfficeHours(msg.doc.office_hours)}
@@ -285,9 +292,10 @@ const AtharBot: React.FC<AtharBotProps> = ({ onClose }) => {
           display: 'flex',
           alignItems: 'center',
           gap: 8,
+          flexDirection: 'column',
         }}
       >
-        <div style={{ flex: 1, position: 'relative' }}>
+        <div style={{ flex: 1, position: 'relative', width: '100%' }}>
           <input
             ref={inputRef}
             type="text"
@@ -330,63 +338,49 @@ const AtharBot: React.FC<AtharBotProps> = ({ onClose }) => {
                 <div
                   key={suggestion.name}
                   style={{
-                    padding: '10px 12px',
+                    padding: '14px 16px',
                     background: selectedSuggestion === idx ? '#ffe5e5' : 'transparent',
                     cursor: 'pointer',
                     borderRadius: 6,
-                    margin: '2px 0',
+                    margin: '4px 0',
                     transition: 'background 0.15s',
+                    fontSize: 15,
                   }}
                   onClick={() => handleSuggestionClick(suggestion)}
                   onMouseEnter={() => setSelectedSuggestion(idx)}
+                  tabIndex={0}
+                  aria-selected={selectedSuggestion === idx}
                 >
-                  <div style={{ fontWeight: 600 }}>{highlightText(suggestion.name, query)}</div>
+                  <div style={{ fontWeight: 500 }}>{highlightText(suggestion.name, query)}</div>
                   <div style={{ fontSize: 13, color: '#888' }}>{suggestion.department} - {suggestion.school}</div>
                 </div>
               ))}
             </div>
           )}
-          {isLoading && (
-            <span style={{ marginLeft: 4, marginRight: 4 }}>
-              <svg width="18" height="18" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg" stroke="#C70039">
-                <g fill="none" fillRule="evenodd">
-                  <g transform="translate(1 1)" strokeWidth="2">
-                    <circle strokeOpacity=".3" cx="18" cy="18" r="18" />
-                    <path d="M36 18c0-9.94-8.06-18-18-18">
-                      <animateTransform
-                        attributeName="transform"
-                        type="rotate"
-                        from="0 18 18"
-                        to="360 18 18"
-                        dur="1s"
-                        repeatCount="indefinite" />
-                    </path>
-                  </g>
-                </g>
-              </svg>
-            </span>
-          )}
         </div>
-        <button
-          type="submit"
-          disabled={isLoading || !query.trim()}
-          aria-label="Send"
-          style={{
-            background: '#e74c3c',
-            color: '#fff',
-            border: 'none',
-            borderRadius: 8,
-            padding: '10px 18px',
-            fontWeight: 700,
-            fontSize: 16,
-            cursor: isLoading || !query.trim() ? 'not-allowed' : 'pointer',
-            transition: 'background 0.2s',
-            boxShadow: '0 1px 4px rgba(231,76,60,0.06)',
-            opacity: isLoading || !query.trim() ? 0.7 : 1,
-          }}
-        >
-          ➤
-        </button>
+        <div style={{ display: 'flex', width: '100%', alignItems: 'center', gap: 8, marginTop: 8 }}>
+          <button
+            type="submit"
+            style={{
+              background: '#C70039',
+              color: '#fff',
+              border: 'none',
+              borderRadius: 8,
+              padding: '10px 18px',
+              fontWeight: 600,
+              fontSize: 16,
+              cursor: 'pointer',
+              transition: 'background 0.2s',
+              flex: 1,
+            }}
+            disabled={isLoading}
+          >
+            Send
+          </button>
+        </div>
+        <div style={{ width: '100%', textAlign: 'right', fontSize: 12, color: '#888', marginTop: 2 }}>
+          Press <b>Enter</b> to send
+        </div>
       </form>
     </div>
   );
