@@ -173,7 +173,14 @@ export default function AtharVolunteerWebsite() {
 
               <Card className="text-center hover:shadow-lg transition-shadow">
                 <CardHeader>
-                  <Image src="/logos/team-athar-logo.png" width="120" height="120" alt="Team Athar Logo" className="mx-auto" />
+                  <Image
+                    src="/logos/team-athar-logo.png"
+                    width={120}
+                    height={120}
+                    alt="Team Athar Logo"
+                    className="mx-auto object-contain"
+                    style={{ background: '#fff', padding: 8, borderRadius: 12 }}
+                  />
                   <CardTitle className="text-red-600">Team Athar</CardTitle>
                   <CardDescription>Core Operations</CardDescription>
                 </CardHeader>
@@ -530,13 +537,12 @@ export default function AtharVolunteerWebsite() {
                     alt="Team Leader"
                     className="mx-auto rounded-full"
                   />
-                  <CardTitle className="text-gray-900">Sarah Ahmed</CardTitle>
-                  <CardDescription>Team Coordinator</CardDescription>
+                  <CardTitle className="text-gray-900">Omar Mubaidin</CardTitle>
+                  <CardDescription>Head of R&D</CardDescription>
                 </CardHeader>
                 <CardContent className="text-center">
                   <p className="text-gray-600">
-                    Leading community outreach programs and coordinating volunteer activities with passion and
-                    dedication.
+                  Leading community outreach programs and coordinating volunteer activities with passion and dedication to maximize our impact on the community.
                   </p>
                 </CardContent>
               </Card>
@@ -549,12 +555,12 @@ export default function AtharVolunteerWebsite() {
                     alt="Program Manager"
                     className="mx-auto rounded-full"
                   />
-                  <CardTitle className="text-gray-900">Omar Hassan</CardTitle>
-                  <CardDescription>Program Manager</CardDescription>
+                  <CardTitle className="text-gray-900">Hassan Zagdhad</CardTitle>
+                  <CardDescription>President</CardDescription>
                 </CardHeader>
                 <CardContent className="text-center">
                   <p className="text-gray-600">
-                    Developing and implementing sustainable programs that address community needs effectively.
+                  Developing and implementing sustainable programs that effectively address community needs, ensuring our volunteer efforts create lasting positive change
                   </p>
                 </CardContent>
               </Card>
@@ -567,12 +573,12 @@ export default function AtharVolunteerWebsite() {
                     alt="Community Liaison"
                     className="mx-auto rounded-full"
                   />
-                  <CardTitle className="text-gray-900">Fatima Ali</CardTitle>
-                  <CardDescription>Community Liaison</CardDescription>
+                  <CardTitle className="text-gray-900">Abdrahman Nassar</CardTitle>
+                  <CardDescription>Vice President</CardDescription>
                 </CardHeader>
                 <CardContent className="text-center">
                   <p className="text-gray-600">
-                    Building bridges between Athar and the community, ensuring our efforts meet real needs.
+                  Building strong bridges between our volunteer team (Athar) and the community, ensuring our collective efforts are responsive to real needs and foster true collaboration.
                   </p>
                 </CardContent>
               </Card>
