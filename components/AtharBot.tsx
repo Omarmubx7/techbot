@@ -1,6 +1,6 @@
 "use client";
 import * as React from 'react';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Fuse from 'fuse.js';
 // @ts-ignore
@@ -32,15 +32,27 @@ const AtharBot: React.FC<AtharBotProps> = ({ onClose }) => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
+  // Debounced search effect
   useEffect(() => {
+    let active = true;
     if (query.trim().length > 0) {
-      const results = fuse.search(query.trim()).slice(0, 5);
-      setSearchSuggestions(results.map((r: any) => r.item));
-      setShowSuggestions(true);
-      setSelectedSuggestion(-1);
+      setIsLoading(true);
+      const handler = setTimeout(() => {
+        if (!active) return;
+        const results = fuse.search(query.trim()).slice(0, 5);
+        setSearchSuggestions(results.map((r: any) => r.item));
+        setShowSuggestions(true);
+        setSelectedSuggestion(0); // auto-select first suggestion
+        setIsLoading(false);
+      }, 250); // 250ms debounce
+      return () => {
+        active = false;
+        clearTimeout(handler);
+      };
     } else {
       setSearchSuggestions([]);
       setShowSuggestions(false);
+      setIsLoading(false);
     }
   }, [query]);
 
@@ -119,15 +131,15 @@ const AtharBot: React.FC<AtharBotProps> = ({ onClose }) => {
     }
   };
 
-  const highlightText = (text: string, query: string) => {
-    if (!query.trim()) return text;
+  const highlightText = (text: string, query: string): React.ReactNode[] => {
+    if (!query.trim()) return [<React.Fragment key={0}>{text}</React.Fragment>];
     const regex = new RegExp(`(${query.trim()})`, 'gi');
-    const parts = text.split(regex);
+    const parts = text.split(regex) as string[];
     return parts.map((part, index) =>
-      regex.test(part) ? (
-        <span key={index} className="search-highlight" style={{ background: '#ffe5e5', borderRadius: 3 }}>{part}</span>
+      index % 2 === 1 ? (
+        <React.Fragment key={index}><span className="search-highlight" style={{ background: '#ffe5e5', borderRadius: 3 }}>{part}</span></React.Fragment>
       ) : (
-        part
+        <React.Fragment key={index}>{part}</React.Fragment>
       )
     );
   };
@@ -333,6 +345,26 @@ const AtharBot: React.FC<AtharBotProps> = ({ onClose }) => {
                 </div>
               ))}
             </div>
+          )}
+          {isLoading && (
+            <span style={{ marginLeft: 4, marginRight: 4 }}>
+              <svg width="18" height="18" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg" stroke="#C70039">
+                <g fill="none" fillRule="evenodd">
+                  <g transform="translate(1 1)" strokeWidth="2">
+                    <circle strokeOpacity=".3" cx="18" cy="18" r="18" />
+                    <path d="M36 18c0-9.94-8.06-18-18-18">
+                      <animateTransform
+                        attributeName="transform"
+                        type="rotate"
+                        from="0 18 18"
+                        to="360 18 18"
+                        dur="1s"
+                        repeatCount="indefinite" />
+                    </path>
+                  </g>
+                </g>
+              </svg>
+            </span>
           )}
         </div>
         <button

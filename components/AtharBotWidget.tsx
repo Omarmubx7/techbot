@@ -44,7 +44,7 @@ const AtharBotWidget: React.FC = () => {
           style={{
             position: 'fixed',
             bottom: 90,
-            right: 24,
+            right: 0,
             zIndex: 1100,
             background: 'rgba(0,0,0,0.2)',
             width: '100vw',
@@ -60,12 +60,14 @@ const AtharBotWidget: React.FC = () => {
               bottom: 0,
               right: 0,
               margin: 24,
-              width: 380,
-              maxWidth: '95vw',
+              width: 'min(380px, 95vw)',
+              height: 'min(600px, 90vh)',
               background: 'white',
               borderRadius: 16,
               boxShadow: '0 4px 32px rgba(0,0,0,0.18)',
-              overflow: 'hidden',
+              overflow: 'auto',
+              maxHeight: '90vh',
+              maxWidth: '95vw',
             }}
             onClick={e => e.stopPropagation()}
           >
