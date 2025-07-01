@@ -11,6 +11,7 @@ const AtharBotWidget: React.FC = () => {
   const [drag, setDrag] = React.useState({ x: 0, y: 0 });
   const [dragging, setDragging] = React.useState(false);
   const dragStart = React.useRef<{ x: number; y: number } | null>(null);
+  const [isDesktop, setIsDesktop] = React.useState(false);
 
   React.useEffect(() => {
     const handler = () => setOpen(true);
@@ -18,9 +19,18 @@ const AtharBotWidget: React.FC = () => {
     return () => window.removeEventListener('open-atharbot-widget', handler);
   }, []);
 
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setIsDesktop(window.innerWidth >= 768);
+      const handleResize = () => setIsDesktop(window.innerWidth >= 768);
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }
+  }, []);
+
   // Mouse/touch handlers
   const handleDragStart = (e: React.MouseEvent | React.TouchEvent) => {
-    if (window.innerWidth < 768) return; // Only draggable on desktop
+    if (!isDesktop) return; // Only draggable on desktop
     setDragging(true);
     const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
     const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
@@ -72,7 +82,7 @@ const AtharBotWidget: React.FC = () => {
     flexDirection: 'column' as const,
     cursor: dragging ? 'grabbing' : 'default',
     zIndex: 1200,
-    transform: window.innerWidth >= 768 ? `translate(${drag.x}px, ${drag.y}px)` : undefined,
+    transform: isDesktop ? `translate(${drag.x}px, ${drag.y}px)` : undefined,
     transition: dragging ? 'none' : 'box-shadow 0.2s',
   };
 
