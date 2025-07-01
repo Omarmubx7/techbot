@@ -25,7 +25,7 @@ export default function RootLayout({
       <body>
         <ThemeProvider>
           {children}
-          <div style={{ position: 'fixed', bottom: 24, right: 24, zIndex: 1200 }}>
+          <div style={{ position: 'fixed', bottom: 80, right: 24, zIndex: 1200 }}>
             <ThemeToggleButton />
           </div>
           <AtharBotWidget />
