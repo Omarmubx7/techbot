@@ -4,6 +4,7 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
+  color: #222 !important;
 }
 
 @layer utilities {
@@ -93,7 +94,7 @@ body {
   }
   body.dark {
     background: #18181b;
-    color: #fff;
+    color: #fff !important;
   }
   .bg-primary {
     background-color: #C70039 !important;
