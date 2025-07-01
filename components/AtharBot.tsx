@@ -24,7 +24,7 @@ const AtharBot: React.FC<AtharBotProps> = ({ onClose }) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [selectedSuggestion, setSelectedSuggestion] = useState(-1);
   const [isTyping, setIsTyping] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // Only for bot response, not suggestions
   const chatEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -36,15 +36,13 @@ const AtharBot: React.FC<AtharBotProps> = ({ onClose }) => {
   useEffect(() => {
     let active = true;
     if (query.trim().length > 0) {
-      setIsLoading(true);
       const handler = setTimeout(() => {
         if (!active) return;
         const results = fuse.search(query.trim()).slice(0, 5);
         setSearchSuggestions(results.map((r: any) => r.item));
         setShowSuggestions(true);
         setSelectedSuggestion(0); // auto-select first suggestion
-        setIsLoading(false);
-      }, 250); // 250ms debounce
+      }, 150); // 150ms debounce for snappy feel
       return () => {
         active = false;
         clearTimeout(handler);
@@ -52,7 +50,6 @@ const AtharBot: React.FC<AtharBotProps> = ({ onClose }) => {
     } else {
       setSearchSuggestions([]);
       setShowSuggestions(false);
-      setIsLoading(false);
     }
   }, [query]);
 
@@ -88,6 +85,7 @@ const AtharBot: React.FC<AtharBotProps> = ({ onClose }) => {
     setShowSuggestions(false);
     setSearchSuggestions([]);
     setIsLoading(false);
+    setTimeout(() => { inputRef.current?.focus(); }, 0);
     if (found.length === 0) {
       setMessages((msgs: any[]) => [
         ...msgs,
@@ -103,7 +101,7 @@ const AtharBot: React.FC<AtharBotProps> = ({ onClose }) => {
   };
 
   const handleSuggestionClick = async (suggestion: any) => {
-    setQuery('');
+    setQuery(suggestion.name);
     setShowSuggestions(false);
     inputRef.current?.focus();
     setIsLoading(true);
@@ -111,6 +109,7 @@ const AtharBot: React.FC<AtharBotProps> = ({ onClose }) => {
     await simulateTyping();
     setIsLoading(false);
     setMessages((msgs: any[]) => [...msgs, { sender: 'bot', doc: suggestion }]);
+    setTimeout(() => { inputRef.current?.focus(); }, 0);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -121,13 +120,23 @@ const AtharBot: React.FC<AtharBotProps> = ({ onClose }) => {
       } else if (e.key === 'ArrowUp') {
         e.preventDefault();
         setSelectedSuggestion((prev: number) => (prev > 0 ? prev - 1 : searchSuggestions.length - 1));
-      } else if (e.key === 'Enter' && selectedSuggestion >= 0) {
+      } else if (e.key === 'Enter') {
         e.preventDefault();
-        handleSuggestionClick(searchSuggestions[selectedSuggestion]);
+        if (selectedSuggestion >= 0 && searchSuggestions[selectedSuggestion]) {
+          // Fill input and submit
+          setQuery(searchSuggestions[selectedSuggestion].name);
+          setShowSuggestions(false);
+          handleSuggestionClick(searchSuggestions[selectedSuggestion]);
+        } else {
+          // Submit current input
+          handleSend(e as any);
+        }
       } else if (e.key === 'Escape') {
         setShowSuggestions(false);
         setSelectedSuggestion(-1);
       }
+    } else if (e.key === 'Enter') {
+      handleSend(e as any);
     }
   };
 
