@@ -6,7 +6,7 @@ import React from 'react';
 import ThemeToggleButton from "../components/ThemeToggleButton";
 
 export const metadata: Metadata = {
-  title: 'v0 App',
+  title: 'Athar',
   description: 'Created with v0',
   generator: 'v0.dev',
 }
@@ -18,6 +18,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/logos/team-athar-logo.png" type="image/png" />
+        <title>Athar</title>
+      </head>
       <body>
         <ThemeProvider>
           {children}
