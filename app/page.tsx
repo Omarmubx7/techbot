@@ -7,6 +7,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { useEffect } from 'react'
 import QuickAccessTools from "@/components/QuickAccessTools"
+import bussystem from "@/public/bussystem.png"
 
 export default function AtharVolunteerWebsite() {
   // Function to trigger the chat widget open event
@@ -50,6 +51,18 @@ export default function AtharVolunteerWebsite() {
       </header>
 
       <main className="flex-1">
+        {/* Bus System Image */}
+        <div className="flex justify-center mt-12 mb-8">
+          <Image
+            src={bussystem}
+            alt="Bus System"
+            style={{ maxWidth: '100%', height: 'auto', borderRadius: 16, boxShadow: '0 2px 16px rgba(0,0,0,0.08)' }}
+            width={800}
+            height={400}
+            priority
+          />
+        </div>
+
         {/* Hero Section */}
         <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-br from-white to-white">
           <div className="container px-4 md:px-6">
