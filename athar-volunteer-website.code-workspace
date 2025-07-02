@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../../../../../Downloads/athar-volunteer-website"
+		},
+		{
+			"path": "../../../../../techbot"
+		}
+	],
+	"settings": {
+		"powershell.cwd": "athar-volunteer-website"
+	}
+}
