@@ -1,3 +1,4 @@
+'use client';
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -5,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Heart, Users, HandHeart, Mail, Phone, MapPin, Calendar, Award, Target } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import QuickAccessTools from "@/components/QuickAccessTools"
 
 export default function AtharVolunteerWebsite() {
@@ -16,6 +17,71 @@ export default function AtharVolunteerWebsite() {
     }
   }
 
+  // Join Us form state and logic
+  const [form, setForm] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    message: '',
+    heardFrom: '',
+  });
+  const [formError, setFormError] = useState('');
+  const [formSuccess, setFormSuccess] = useState(false);
+
+  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    // Basic validation
+    if (!form.firstName || !form.lastName || !form.email || !form.phone || !form.message || !form.heardFrom) {
+      setFormError('Please fill in all fields.');
+      return;
+    }
+    setFormError('');
+    try {
+      const res = await fetch('/api/join-us', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      const result = await res.json();
+      if (result.success) {
+        setFormSuccess(true);
+      } else {
+        setFormError('There was an error submitting your application. Please try again.');
+      }
+    } catch (err) {
+      setFormError('There was an error submitting your application. Please try again.');
+    }
+  };
+
+  const [activeSection, setActiveSection] = useState('');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['about', 'departments', 'tools', 'impact', 'testimonials', 'blog', 'events', 'social', 'team', 'join', 'contact'];
+      let found = '';
+      for (const id of sections) {
+        const el = document.getElementById(id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 80 && rect.bottom >= 80) {
+            found = id;
+            break;
+          }
+        }
+      }
+      setActiveSection(found);
+    };
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div className="flex flex-col min-h-screen">
       {/* Header */}
@@ -24,29 +90,59 @@ export default function AtharVolunteerWebsite() {
           <Heart className="h-8 w-8 text-primary" />
           <span className="ml-2 text-2xl font-bold text-gray-900">Athar</span>
         </Link>
-        <nav className="ml-auto flex gap-4 sm:gap-6">
-          <Link href="#about" className="text-sm font-medium hover:text-primary transition-colors">
-            About
-          </Link>
-          <Link href="#departments" className="text-sm font-medium hover:text-primary transition-colors">
-            Departments
-          </Link>
-          <Link href="#tools" className="text-sm font-medium hover:text-primary transition-colors">
-            Tools
-          </Link>
-          <Link href="#impact" className="text-sm font-medium hover:text-primary transition-colors">
-            Our Impact
-          </Link>
-          <Link href="#team" className="text-sm font-medium hover:text-primary transition-colors">
-            Team
-          </Link>
-          <Link href="#join" className="text-sm font-medium hover:text-primary transition-colors">
-            Join Us
-          </Link>
-          <Link href="#contact" className="text-sm font-medium hover:text-primary transition-colors">
-            Contact
-          </Link>
+        <nav className="ml-auto hidden md:flex gap-4 sm:gap-6">
+          {[
+            { id: 'about', label: 'About' },
+            { id: 'departments', label: 'Departments' },
+            { id: 'tools', label: 'Tools' },
+            { id: 'impact', label: 'Our Impact' },
+            { id: 'testimonials', label: 'Stories' },
+            { id: 'blog', label: 'News' },
+            { id: 'events', label: 'Events' },
+            { id: 'social', label: 'Social' },
+            { id: 'team', label: 'Team' },
+            { id: 'join', label: 'Join Us' },
+            { id: 'contact', label: 'Contact' },
+          ].map((item) => (
+            <Link
+              key={item.id}
+              href={`#${item.id}`}
+              className={`text-sm font-medium transition-colors ${activeSection === item.id ? 'text-primary underline underline-offset-4' : 'hover:text-primary'}`}
+            >
+              {item.label}
+            </Link>
+          ))}
         </nav>
+        {/* Mobile menu toggle */}
+        <button className="ml-auto md:hidden p-2" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-label="Toggle menu">
+          <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary"><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="18" x2="21" y2="18" /></svg>
+        </button>
+        {mobileMenuOpen && (
+          <div className="absolute top-16 right-4 bg-white rounded shadow-lg flex flex-col gap-2 p-4 z-50 md:hidden">
+            {[
+              { id: 'about', label: 'About' },
+              { id: 'departments', label: 'Departments' },
+              { id: 'tools', label: 'Tools' },
+              { id: 'impact', label: 'Our Impact' },
+              { id: 'testimonials', label: 'Stories' },
+              { id: 'blog', label: 'News' },
+              { id: 'events', label: 'Events' },
+              { id: 'social', label: 'Social' },
+              { id: 'team', label: 'Team' },
+              { id: 'join', label: 'Join Us' },
+              { id: 'contact', label: 'Contact' },
+            ].map((item) => (
+              <Link
+                key={item.id}
+                href={`#${item.id}`}
+                className={`text-base font-medium transition-colors ${activeSection === item.id ? 'text-primary underline underline-offset-4' : 'hover:text-primary'}`}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+        )}
       </header>
 
       <main className="flex-1">
@@ -150,7 +246,7 @@ export default function AtharVolunteerWebsite() {
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-gray-900">Our Departments</h2>
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-gray-900" id="departments">Our Departments</h2>
                 <p className="max-w-[900px] text-gray-600 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                   Each department brings unique expertise and passion to serve our community effectively.
                 </p>
@@ -159,7 +255,7 @@ export default function AtharVolunteerWebsite() {
             <div className="mx-auto grid max-w-6xl items-center gap-6 py-12 lg:grid-cols-3 lg:gap-8">
               <Card className="text-center hover:shadow-lg transition-shadow">
                 <CardHeader>
-                  <Image src="/logos/blue logo.png" width="120" height="120" alt="Blue Team Logo" className="mx-auto" />
+                  <Image src="/logos/blue logo.png" width="120" height="120" alt="Blue Team Logo for R&D Department" className="mx-auto" />
                   <CardTitle className="text-blue-600">R&D Team</CardTitle>
                   <CardDescription>Research & Development</CardDescription>
                 </CardHeader>
@@ -516,6 +612,172 @@ export default function AtharVolunteerWebsite() {
           </div>
         </section>
 
+        {/* Testimonials Section */}
+        <section id="testimonials" className="w-full py-12 md:py-24 lg:py-32 bg-white">
+          <div className="container px-4 md:px-6">
+            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+              <div className="space-y-2">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-gray-900">Volunteer Stories</h2>
+                <p className="max-w-[900px] text-gray-600 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                  Hear from our volunteers about their experiences and the impact they've made.
+                </p>
+              </div>
+            </div>
+            <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-3 lg:gap-8">
+              <div className="bg-gray-50 rounded-xl p-6 shadow text-center">
+                <p className="text-lg text-gray-800 italic">“Volunteering with Athar has been a life-changing experience. I've met amazing people and truly feel like I'm making a difference.”</p>
+                <div className="mt-4 font-semibold text-primary">Sara Al-Farsi</div>
+                <div className="text-sm text-gray-500">Volunteer, R&D Team</div>
+              </div>
+              <div className="bg-gray-50 rounded-xl p-6 shadow text-center">
+                <p className="text-lg text-gray-800 italic">“The support and training I received helped me grow both personally and professionally. Athar is like a second family.”</p>
+                <div className="mt-4 font-semibold text-primary">Mohammad Saleh</div>
+                <div className="text-sm text-gray-500">Volunteer, Logistics Team</div>
+              </div>
+              <div className="bg-gray-50 rounded-xl p-6 shadow text-center">
+                <p className="text-lg text-gray-800 italic">“Seeing the smiles on the faces of those we help is the best reward. I'm proud to be part of Athar.”</p>
+                <div className="mt-4 font-semibold text-primary">Lina Haddad</div>
+                <div className="text-sm text-gray-500">Volunteer, Media Team</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Blog/News Section */}
+        <section id="blog" className="w-full py-12 md:py-24 lg:py-32 bg-gray-50">
+          <div className="container px-4 md:px-6">
+            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+              <div className="space-y-2">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-gray-900">Latest News</h2>
+                <p className="max-w-[900px] text-gray-600 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                  Stay updated with our latest activities and announcements.
+                </p>
+              </div>
+            </div>
+            <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-3 lg:gap-8">
+              <div className="bg-white rounded-xl p-6 shadow text-left">
+                <h3 className="text-xl font-bold text-primary mb-2">Athar Launches New Community Program</h3>
+                <p className="text-gray-700 mb-2">We are excited to announce the launch of our new initiative focused on youth empowerment and education. Join us for the kickoff event next month!</p>
+                <span className="text-xs text-gray-400">April 2024</span>
+              </div>
+              <div className="bg-white rounded-xl p-6 shadow text-left">
+                <h3 className="text-xl font-bold text-primary mb-2">Volunteer Training Recap</h3>
+                <p className="text-gray-700 mb-2">Our recent training session was a huge success! Thank you to all who participated and helped make it possible. Stay tuned for more workshops.</p>
+                <span className="text-xs text-gray-400">March 2024</span>
+              </div>
+              <div className="bg-white rounded-xl p-6 shadow text-left">
+                <h3 className="text-xl font-bold text-primary mb-2">Fundraiser Exceeds Goals</h3>
+                <p className="text-gray-700 mb-2">Thanks to your generosity, we surpassed our fundraising goals for the winter campaign. Your support helps us reach more families in need.</p>
+                <span className="text-xs text-gray-400">February 2024</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Upcoming Events Section */}
+        <section id="events" className="w-full py-12 md:py-24 lg:py-32 bg-white">
+          <div className="container px-4 md:px-6">
+            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+              <div className="space-y-2">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-gray-900">Upcoming Events</h2>
+                <p className="max-w-[900px] text-gray-600 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                  Join us at our upcoming events and make a difference in the community!
+                </p>
+              </div>
+            </div>
+            <div className="mx-auto grid max-w-3xl items-center gap-6 py-12 lg:grid-cols-1 lg:gap-8">
+              <div className="bg-gray-50 rounded-xl p-6 shadow flex flex-col md:flex-row md:items-center md:justify-between">
+                <div>
+                  <div className="text-primary font-bold text-lg">May 18, 2024</div>
+                  <div className="text-xl font-semibold text-gray-900">Community Clean-Up Day</div>
+                  <div className="text-gray-700">Help us beautify local parks and public spaces. All supplies provided!</div>
+                </div>
+              </div>
+              <div className="bg-gray-50 rounded-xl p-6 shadow flex flex-col md:flex-row md:items-center md:justify-between">
+                <div>
+                  <div className="text-primary font-bold text-lg">June 2, 2024</div>
+                  <div className="text-xl font-semibold text-gray-900">Youth Empowerment Workshop</div>
+                  <div className="text-gray-700">A day of skill-building and mentorship for local youth. Volunteers needed for activities and logistics.</div>
+                </div>
+              </div>
+              <div className="bg-gray-50 rounded-xl p-6 shadow flex flex-col md:flex-row md:items-center md:justify-between">
+                <div>
+                  <div className="text-primary font-bold text-lg">June 20, 2024</div>
+                  <div className="text-xl font-semibold text-gray-900">Fundraising Gala</div>
+                  <div className="text-gray-700">Join our annual gala to support ongoing projects. Volunteers needed for event coordination and guest support.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Social Media Integration Section */}
+        <section id="social" className="w-full py-12 md:py-24 lg:py-32 bg-gray-50">
+          <div className="container px-4 md:px-6">
+            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+              <div className="space-y-2">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-gray-900">Connect With Us</h2>
+                <p className="max-w-[900px] text-gray-600 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                  Follow us on social media to stay updated and help spread the word!
+                </p>
+              </div>
+            </div>
+            <div className="flex justify-center gap-6 py-8">
+              <a href="https://www.instagram.com/athar.htu?igsh=aHB3MXpuNWpyajN2" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <svg width="32" height="32" fill="currentColor" className="text-pink-600" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.974.974 1.246 2.241 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.974.974-2.241 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.308-.974-.974-1.246-2.241-1.308-3.608C2.175 15.647 2.163 15.267 2.163 12s.012-3.584.07-4.85c.062-1.366.334-2.633 1.308-3.608C4.515 2.567 5.782 2.295 7.148 2.233 8.414 2.175 8.794 2.163 12 2.163zm0-2.163C8.741 0 8.332.013 7.052.072 5.771.131 4.659.363 3.678 1.344c-.98.98-1.213 2.092-1.272 3.373C2.013 5.668 2 6.077 2 12c0 5.923.013 6.332.072 7.613.059 1.281.292 2.393 1.272 3.373.98.98 2.092 1.213 3.373 1.272C8.332 23.987 8.741 24 12 24s3.668-.013 4.948-.072c1.281-.059 2.393-.292 3.373-1.272.98-.98 1.213-2.092 1.272-3.373.059-1.281.072-1.69.072-7.613 0-5.923-.013-6.332-.072-7.613-.059-1.281-.292-2.393-1.272-3.373-.98-.98-2.092-1.213-3.373-1.272C15.668.013 15.259 0 12 0z"/><path d="M12 5.838A6.162 6.162 0 0 0 5.838 12 6.162 6.162 0 0 0 12 18.162 6.162 6.162 0 0 0 18.162 12 6.162 6.162 0 0 0 12 5.838zm0 10.162A3.999 3.999 0 1 1 12 8a3.999 3.999 0 0 1 0 7.999zm6.406-11.845a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg>
+              </a>
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                <svg width="32" height="32" fill="currentColor" className="text-blue-600" viewBox="0 0 24 24" aria-hidden="true"><path d="M22.675 0h-21.35C.595 0 0 .592 0 1.326v21.348C0 23.406.595 24 1.326 24H12.82v-9.294H9.692V11.01h3.127V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.918.001c-1.504 0-1.797.715-1.797 1.763v2.313h3.587l-.467 3.696h-3.12V24h6.116C23.406 24 24 23.406 24 22.674V1.326C24 .592 23.406 0 22.675 0"/></svg>
+              </a>
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                <svg width="32" height="32" fill="currentColor" className="text-sky-500" viewBox="0 0 24 24" aria-hidden="true"><path d="M24 4.557a9.83 9.83 0 0 1-2.828.775 4.932 4.932 0 0 0 2.165-2.724c-.951.564-2.005.974-3.127 1.195a4.916 4.916 0 0 0-8.38 4.482C7.691 8.095 4.066 6.13 1.64 3.161c-.542.929-.856 2.01-.857 3.17 0 2.188 1.115 4.117 2.823 5.247a4.904 4.904 0 0 1-2.229-.616c-.054 2.281 1.581 4.415 3.949 4.89a4.936 4.936 0 0 1-2.224.084c.627 1.956 2.444 3.377 4.6 3.417A9.867 9.867 0 0 1 0 21.543a13.94 13.94 0 0 0 7.548 2.209c9.058 0 14.009-7.496 14.009-13.986 0-.21-.005-.423-.015-.633A9.936 9.936 0 0 0 24 4.557z"/></svg>
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <svg width="32" height="32" fill="currentColor" className="text-blue-800" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.327-.027-3.037-1.849-3.037-1.851 0-2.132 1.445-2.132 2.939v5.667H9.358V9h3.414v1.561h.049c.476-.899 1.637-1.849 3.37-1.849 3.602 0 4.267 2.368 4.267 5.455v6.285zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zm1.777 13.019H3.56V9h3.554v11.452zM22.225 0H1.771C.792 0 0 .771 0 1.723v20.549C0 23.229.792 24 1.771 24h20.451C23.2 24 24 23.229 24 22.271V1.723C24 .771 23.2 0 22.225 0z"/></svg>
+              </a>
+            </div>
+            <div className="flex flex-col items-center py-4">
+              <div className="w-full max-w-md bg-white rounded-xl shadow p-6">
+                <div className="text-gray-700 font-semibold mb-2">Instagram Feed</div>
+                <div className="w-full h-40 bg-gray-100 flex items-center justify-center rounded text-gray-400">[Instagram feed preview here]</div>
+                <a href="https://www.instagram.com/athar.htu?igsh=aHB3MXpuNWpyajN2" target="_blank" rel="noopener noreferrer" className="text-pink-600 font-medium mt-2 inline-block">@athar.htu</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section id="faq" className="w-full py-12 md:py-24 lg:py-32 bg-white">
+          <div className="container px-4 md:px-6">
+            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+              <div className="space-y-2">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-gray-900">Frequently Asked Questions</h2>
+                <p className="max-w-[900px] text-gray-600 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                  Find answers to common questions about volunteering with Athar.
+                </p>
+              </div>
+            </div>
+            <div className="mx-auto max-w-2xl py-8">
+              <details className="mb-4 border rounded-lg p-4">
+                <summary className="font-semibold cursor-pointer text-primary">Who can volunteer with Athar?</summary>
+                <div className="mt-2 text-gray-700">Anyone with a passion for helping others is welcome! We accept volunteers of all backgrounds and skill levels.</div>
+              </details>
+              <details className="mb-4 border rounded-lg p-4">
+                <summary className="font-semibold cursor-pointer text-primary">How do I sign up to volunteer?</summary>
+                <div className="mt-2 text-gray-700">Simply fill out the Join Us form above. Our team will contact you with next steps.</div>
+              </details>
+              <details className="mb-4 border rounded-lg p-4">
+                <summary className="font-semibold cursor-pointer text-primary">What kind of activities can I help with?</summary>
+                <div className="mt-2 text-gray-700">We offer a variety of opportunities, including event organization, community outreach, education, logistics, and more.</div>
+              </details>
+              <details className="mb-4 border rounded-lg p-4">
+                <summary className="font-semibold cursor-pointer text-primary">Do I need previous experience?</summary>
+                <div className="mt-2 text-gray-700">No experience is required! We provide training and support for all volunteers.</div>
+              </details>
+            </div>
+          </div>
+        </section>
+
         {/* Team Section */}
         <section id="team" className="w-full py-12 md:py-24 lg:py-32">
           <div className="container px-4 md:px-6">
@@ -627,39 +889,59 @@ export default function AtharVolunteerWebsite() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <label htmlFor="first-name" className="text-sm font-medium text-gray-700">
-                        First Name
-                      </label>
-                      <Input id="first-name" placeholder="Enter your first name" />
+                  {formSuccess ? (
+                    <div className="text-green-600 font-semibold text-center py-8">Thank you for applying! We'll be in touch soon.</div>
+                  ) : (
+                  <form className="space-y-4" onSubmit={handleFormSubmit}>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <label htmlFor="first-name" className="text-sm font-medium text-gray-700">
+                          First Name
+                        </label>
+                        <Input id="first-name" name="firstName" value={form.firstName} onChange={handleFormChange} placeholder="Enter your first name" />
+                      </div>
+                      <div className="space-y-2">
+                        <label htmlFor="last-name" className="text-sm font-medium text-gray-700">
+                          Last Name
+                        </label>
+                        <Input id="last-name" name="lastName" value={form.lastName} onChange={handleFormChange} placeholder="Enter your last name" />
+                      </div>
                     </div>
                     <div className="space-y-2">
-                      <label htmlFor="last-name" className="text-sm font-medium text-gray-700">
-                        Last Name
+                      <label htmlFor="email" className="text-sm font-medium text-gray-700">
+                        Email
                       </label>
-                      <Input id="last-name" placeholder="Enter your last name" />
+                      <Input id="email" name="email" type="email" value={form.email} onChange={handleFormChange} placeholder="Enter your email" />
                     </div>
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="email" className="text-sm font-medium text-gray-700">
-                      Email
-                    </label>
-                    <Input id="email" type="email" placeholder="Enter your email" />
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="phone" className="text-sm font-medium text-gray-700">
-                      Phone
-                    </label>
-                    <Input id="phone" type="tel" placeholder="Enter your phone number" />
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="message" className="text-sm font-medium text-gray-700">
-                      Why do you want to volunteer?
-                    </label>
-                    <Textarea id="message" placeholder="Tell us about your motivation and interests" />
-                  </div>
-                  <Button className="w-full bg-primary hover:bg-primary-dark">Submit Application</Button>
+                    <div className="space-y-2">
+                      <label htmlFor="phone" className="text-sm font-medium text-gray-700">
+                        Phone
+                      </label>
+                      <Input id="phone" name="phone" type="tel" value={form.phone} onChange={handleFormChange} placeholder="Enter your phone number" />
+                    </div>
+                    <div className="space-y-2">
+                      <label htmlFor="heardFrom" className="text-sm font-medium text-gray-700">
+                        How did you hear about us?
+                      </label>
+                      <select id="heardFrom" name="heardFrom" value={form.heardFrom} onChange={handleFormChange} className="w-full border rounded px-3 py-2">
+                        <option value="">Select an option</option>
+                        <option value="friend">Friend or Family</option>
+                        <option value="social">Social Media</option>
+                        <option value="event">Event</option>
+                        <option value="search">Search Engine</option>
+                        <option value="other">Other</option>
+                      </select>
+                    </div>
+                    <div className="space-y-2">
+                      <label htmlFor="message" className="text-sm font-medium text-gray-700">
+                        Why do you want to volunteer?
+                      </label>
+                      <Textarea id="message" name="message" value={form.message} onChange={handleFormChange} placeholder="Tell us about your motivation and interests" />
+                    </div>
+                    {formError && <div className="text-red-600 text-sm">{formError}</div>}
+                    <Button className="w-full bg-primary hover:bg-primary-dark" type="submit">Submit Application</Button>
+                  </form>
+                  )}
                 </CardContent>
               </Card>
             </div>
