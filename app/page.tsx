@@ -94,10 +94,7 @@ export default function AtharVolunteerWebsite() {
           {[
             { id: 'about', label: 'About' },
             { id: 'departments', label: 'Departments' },
-            { id: 'tools', label: 'Tools' },
-            { id: 'impact', label: 'Our Impact' },
-            { id: 'testimonials', label: 'Stories' },
-            { id: 'blog', label: 'News' },
+            { id: 'tools', label: 'Tools' },   
             { id: 'events', label: 'Events' },
             { id: 'social', label: 'Social' },
             { id: 'team', label: 'Team' },
@@ -433,41 +430,164 @@ export default function AtharVolunteerWebsite() {
               <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                 <svg width="32" height="32" fill="currentColor" className="text-blue-800" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.327-.027-3.037-1.849-3.037-1.851 0-2.132 1.445-2.132 2.939v5.667H9.358V9h3.414v1.561h.049c.476-.899 1.637-1.849 3.37-1.849 3.602 0 4.267 2.368 4.267 5.455v6.285zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zm1.777 13.019H3.56V9h3.554v11.452zM22.225 0H1.771C.792 0 0 .771 0 1.723v20.549C0 23.229.792 24 1.771 24h20.451C23.2 24 24 23.229 24 22.271V1.723C24 .771 23.2 0 22.225 0z"/></svg>
               </a>
-            
+            </div>
+            <div className="flex flex-col items-center py-4">
+              <div className="w-full max-w-md bg-white rounded-xl shadow p-6">
+                <div className="text-gray-700 font-semibold mb-2">Instagram Feed</div>
+                <div className="w-full h-40 bg-gray-100 flex items-center justify-center rounded text-gray-400">[Instagram feed preview here]</div>
+                <a href="https://www.instagram.com/athar.htu?igsh=aHB3MXpuNWpyajN2" target="_blank" rel="noopener noreferrer" className="text-pink-600 font-medium mt-2 inline-block">@athar.htu</a>
+              </div>
+            </div>
           </div>
         </section>
 
         {/* FAQ Section */}
-        <section id="faq" className="w-full py-12 md:py-24 lg:py-32 bg-white">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-gray-900">Frequently Asked Questions</h2>
-                <p className="max-w-[900px] text-gray-600 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Find answers to common questions about volunteering with Athar.
-                </p>
-              </div>
-            </div>
-            <div className="mx-auto max-w-2xl py-8">
-              <details className="mb-4 border rounded-lg p-4">
-                <summary className="font-semibold cursor-pointer text-primary">Who can volunteer with Athar?</summary>
-                <div className="mt-2 text-gray-700">Anyone with a passion for helping others is welcome! We accept volunteers of all backgrounds and skill levels.</div>
-              </details>
-              <details className="mb-4 border rounded-lg p-4">
-                <summary className="font-semibold cursor-pointer text-primary">How do I sign up to volunteer?</summary>
-                <div className="mt-2 text-gray-700">Simply fill out the Join Us form above. Our team will contact you with next steps.</div>
-              </details>
-              <details className="mb-4 border rounded-lg p-4">
-                <summary className="font-semibold cursor-pointer text-primary">What kind of activities can I help with?</summary>
-                <div className="mt-2 text-gray-700">We offer a variety of opportunities, including event organization, community outreach, education, logistics, and more.</div>
-              </details>
-              <details className="mb-4 border rounded-lg p-4">
-                <summary className="font-semibold cursor-pointer text-primary">Do I need previous experience?</summary>
-                <div className="mt-2 text-gray-700">No experience is required! We provide training and support for all volunteers.</div>
-              </details>
-            </div>
-          </div>
-        </section>
+<section id="faq" className="w-full py-12 md:py-24 lg:py-32 bg-white">
+  <div className="container px-4 md:px-6">
+    <div className="flex flex-col items-center justify-center space-y-4 text-center">
+      <div className="space-y-2">
+        <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-gray-900">
+          Frequently Asked Questions
+        </h2>
+        <p className="max-w-[900px] text-gray-600 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+          Find answers to common questions about volunteering with Athar.
+        </p>
+      </div>
+    </div>
+    <div className="mx-auto max-w-2xl py-8 space-y-4">
+      {/* Original FAQs */}
+      <details className="border rounded-lg p-4">
+        <summary className="font-semibold cursor-pointer text-primary">Who can volunteer with Athar?</summary>
+        <div className="mt-2 text-gray-700">
+          Anyone with a passion for helping others is welcome! We accept volunteers of all backgrounds and skill levels.
+        </div>
+      </details>
+      <details className="border rounded-lg p-4">
+        <summary className="font-semibold cursor-pointer text-primary">How do I sign up to volunteer?</summary>
+        <div className="mt-2 text-gray-700">
+          Simply fill out the Join Us form above. Our team will contact you with next steps.
+        </div>
+      </details>
+      <details className="border rounded-lg p-4">
+        <summary className="font-semibold cursor-pointer text-primary">What kind of activities can I help with?</summary>
+        <div className="mt-2 text-gray-700">
+          We offer a variety of opportunities, including event organization, community outreach, education, logistics, and more.
+        </div>
+      </details>
+      <details className="border rounded-lg p-4">
+        <summary className="font-semibold cursor-pointer text-primary">Do I need previous experience?</summary>
+        <div className="mt-2 text-gray-700">
+          No experience is required! We provide training and support for all volunteers.
+        </div>
+      </details>
+
+      {/* Custom Athar Questions */}
+      <details className="border rounded-lg p-4">
+        <summary className="font-semibold cursor-pointer text-primary">What makes Athar different from other student or volunteer groups?</summary>
+        <div className="mt-2 text-gray-700">
+          Athar combines structured organization with innovation and service. We deliver real impact through a mix of field work, student support, and tech-driven solutions.
+        </div>
+      </details>
+      <details className="border rounded-lg p-4">
+        <summary className="font-semibold cursor-pointer text-primary">How many members are currently in Athar?</summary>
+        <div className="mt-2 text-gray-700">
+          Athar has over 70 active members distributed across six departments including R&D, Media, PR, Logistics, Education, and Core Operations.
+        </div>
+      </details>
+      <details className="border rounded-lg p-4">
+        <summary className="font-semibold cursor-pointer text-primary">What are the main activities or initiatives Athar focuses on?</summary>
+        <div className="mt-2 text-gray-700">
+          We lead workshops, clean-up campaigns, student support programs, digital tools, and major community events like galas and awareness drives.
+        </div>
+      </details>
+      <details className="border rounded-lg p-4">
+        <summary className="font-semibold cursor-pointer text-primary">How are decisions made within the team?</summary>
+        <div className="mt-2 text-gray-700">
+          Department leads propose initiatives in regular meetings. Key decisions are discussed and approved by the leadership team collaboratively.
+        </div>
+      </details>
+      <details className="border rounded-lg p-4">
+        <summary className="font-semibold cursor-pointer text-primary">How do new volunteers get trained or assigned tasks?</summary>
+        <div className="mt-2 text-gray-700">
+          New members receive onboarding and are placed in departments based on interest. Coordinators provide training and continuous guidance.
+        </div>
+      </details>
+      <details className="border rounded-lg p-4">
+        <summary className="font-semibold cursor-pointer text-primary">What problems has Athar solved for students or the university?</summary>
+        <div className="mt-2 text-gray-700">
+          Athar has provided emotional and academic support, managed crises, improved communication between students and administration, and built tech tools to ease student life.
+        </div>
+      </details>
+      <details className="border rounded-lg p-4">
+        <summary className="font-semibold cursor-pointer text-primary">Do you collaborate with any external organizations or charities?</summary>
+        <div className="mt-2 text-gray-700">
+          Yes, we work with local NGOs and community groups to expand our impact and offer real-world volunteer experiences to our members.
+        </div>
+      </details>
+      <details className="border rounded-lg p-4">
+        <summary className="font-semibold cursor-pointer text-primary">Is Athar building any platforms or bots to support students?</summary>
+        <div className="mt-2 text-gray-700">
+          Yes. Our R&D team is building tools like AtharBot to answer FAQs, guide students, and improve access to services through technology.
+        </div>
+      </details>
+      <details className="border rounded-lg p-4">
+        <summary className="font-semibold cursor-pointer text-primary">What’s the role of the R&D team in Athar?</summary>
+        <div className="mt-2 text-gray-700">
+          The R&D team leads tech innovation by creating digital tools, automating workflows, and collecting feedback to improve our services.
+        </div>
+      </details>
+      <details className="border rounded-lg p-4">
+        <summary className="font-semibold cursor-pointer text-primary">How do you ensure volunteers are well-prepared and skilled?</summary>
+        <div className="mt-2 text-gray-700">
+          We provide onboarding, internal workshops, mentorship, and real-time feedback to support continuous growth and development.
+        </div>
+      </details>
+      <details className="border rounded-lg p-4">
+        <summary className="font-semibold cursor-pointer text-primary">How does the Education/Instructor team operate?</summary>
+        <div className="mt-2 text-gray-700">
+          The Education team designs and delivers learning workshops, campaigns, and resources to empower both volunteers and the broader student body.
+        </div>
+      </details>
+      <details className="border rounded-lg p-4">
+        <summary className="font-semibold cursor-pointer text-primary">Does Athar work closely with university departments (like student affairs)?</summary>
+        <div className="mt-2 text-gray-700">
+          Yes. We collaborate with university offices such as Student Affairs to coordinate events, get approvals, and align our goals with university policies.
+        </div>
+      </details>
+      <details className="border rounded-lg p-4">
+        <summary className="font-semibold cursor-pointer text-primary">How do you handle large-scale events or multi-department operations?</summary>
+        <div className="mt-2 text-gray-700">
+          We assign a lead coordinator, divide roles across departments, and use digital tools for planning and communication to ensure smooth execution.
+        </div>
+      </details>
+      <details className="border rounded-lg p-4">
+        <summary className="font-semibold cursor-pointer text-primary">How do you handle internal conflicts or misunderstandings?</summary>
+        <div className="mt-2 text-gray-700">
+          Conflicts are handled through respectful private dialogue, mediation by department heads, and involvement of leadership when necessary.
+        </div>
+      </details>
+      <details className="border rounded-lg p-4">
+        <summary className="font-semibold cursor-pointer text-primary">Do you have rules for how volunteers should behave?</summary>
+        <div className="mt-2 text-gray-700">
+          Yes. We follow a code of conduct promoting professionalism, respect, and teamwork. Volunteers are expected to uphold Athar’s values in all activities.
+        </div>
+      </details>
+      <details className="border rounded-lg p-4">
+        <summary className="font-semibold cursor-pointer text-primary">What are Athar’s goals for the upcoming semester or year?</summary>
+        <div className="mt-2 text-gray-700">
+          Launch AtharBot, host major events, expand partnerships, and enhance internal training to build a stronger, tech-supported volunteer community.
+        </div>
+      </details>
+      <details className="border rounded-lg p-4">
+        <summary className="font-semibold cursor-pointer text-primary">How will the website or digital tools help you grow?</summary>
+        <div className="mt-2 text-gray-700">
+          These tools will automate routine tasks, improve communication, support onboarding, and extend our impact by offering 24/7 student support online.
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
 
         {/* Team Section */}
         <section id="team" className="w-full py-12 md:py-24 lg:py-32">
