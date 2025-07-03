@@ -210,8 +210,7 @@ export default function AtharVolunteerWebsite() {
                     <div>
                       <h3 className="text-xl font-bold text-gray-900">Our Mission</h3>
                       <p className="text-gray-600">
-                        To empower communities through volunteer service, education, and sustainable development
-                        initiatives.
+                       We support students with empathy and action, handle all suggestions professionally, ease fears around administration and finances, and manage crises with excellence.
                       </p>
                     </div>
                   </div>
@@ -220,18 +219,16 @@ export default function AtharVolunteerWebsite() {
                     <div>
                       <h3 className="text-xl font-bold text-gray-900">Our Values</h3>
                       <p className="text-gray-600">
-                        Compassion, integrity, inclusivity, and dedication to serving those in need with respect and
-                        dignity.
+                     Our volunteer team is built on trust, teamwork, respect, and clear communication. We are committed to empathy, accountability, and inclusivity, with a shared focus on integrity and meaningful impact.
                       </p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
                     <Users className="h-6 w-6 text-primary mt-1" />
                     <div>
-                      <h3 className="text-xl font-bold text-gray-900">Our Community</h3>
+                      <h3 className="text-xl font-bold text-gray-900">Our Vision</h3>
                       <p className="text-gray-600">
-                        A welcoming space for volunteers from all backgrounds to contribute their skills and make a
-                        difference.
+                        Our vision is to earn the trust of students and the university community while building a strong, positive presence through reliability and professionalism.
                       </p>
                     </div>
                   </div>
