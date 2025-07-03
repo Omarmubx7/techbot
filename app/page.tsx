@@ -389,7 +389,7 @@ export default function AtharVolunteerWebsite() {
               <div className="bg-gray-50 rounded-xl p-6 shadow flex flex-col md:flex-row md:items-center md:justify-between">
                 <div>
                   <div className="text-primary font-bold text-lg">July 30, 2025</div>
-                  <div className="text-xl font-semibold text-gray-900">Putting stikers on the doors</div>
+                  <div className="text-xl font-semibold text-gray-900">Putting sticker on the floors door</div>
                   <div className="text-gray-700">Improve the student experience</div>
                 </div>
               </div>
@@ -452,7 +452,7 @@ Hear our story, meet the departments, and see how you can be part of something m
           Frequently Asked Questions
         </h2>
         <p className="max-w-[900px] text-gray-600 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-          Find answers to common questions about volunteering with Athar.
+          Find answers to common questions about Athar.
         </p>
       </div>
     </div>
@@ -469,14 +469,9 @@ Hear our story, meet the departments, and see how you can be part of something m
       <details className="border rounded-lg p-4">
         <summary className="font-semibold cursor-pointer text-primary">How many members are currently in Athar?</summary>
         <div className="mt-2 text-gray-700">
-          Athar has over 16 active members distributed across six departments including R&D, Media, PR, Logistics, Education, and Core Operations.
+          Athar has over 16 active members distributed across six departments including R&D, Media, PR, Logistics, Education.
         </div>
-      </details>
-      <details className="border rounded-lg p-4">
-        <summary className="font-semibold cursor-pointer text-primary">What are the main activities or initiatives Athar focuses on?</summary>
-        <div className="mt-2 text-gray-700">
-          We lead workshops, clean-up campaigns, student support programs, digital tools, and major community events like galas and awareness drives.
-        </div>
+    
       </details>
       <details className="border rounded-lg p-4">
         <summary className="font-semibold cursor-pointer text-primary">How are decisions made within the team?</summary>
