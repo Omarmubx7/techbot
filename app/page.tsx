@@ -171,7 +171,7 @@ export default function AtharVolunteerWebsite() {
               </div>
               <div className="flex items-center justify-center">
                 <Image
-                  src="/placeholder.svg?height=400&width=400"
+                  src="htuold.svg?height=400&width=400"
                   width="400"
                   height="400"
                   alt="Athar volunteer team in action"
