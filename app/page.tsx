@@ -172,8 +172,8 @@ export default function AtharVolunteerWebsite() {
               <div className="flex items-center justify-center">
                <Image   
   src="/htubr.jpg"
-  width={600}
-  height={400}
+  width="600"
+  height="400"
   alt="Community service activities"
   className="mx-auto aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full"
 />
@@ -198,8 +198,8 @@ export default function AtharVolunteerWebsite() {
             <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-2 lg:gap-12">
              <Image
   src="/htuold.jpg"
-  width={400}
-  height={400}
+  width="400"
+  height="400"
   alt="Athar volunteer team in action"
   className="aspect-square overflow-hidden rounded-xl object-cover"
 />
