@@ -628,170 +628,124 @@ Hear our story, meet the departments, and see how you can be part of something m
         </section>
 
         {/* Join Us Section */}
-        <section id="join" className="w-full py-12 md:py-24 lg:py-32 bg-primary">
-          <div className="container px-4 md:px-6">
-            <div className="grid gap-6 lg:grid-cols-2 lg:gap-12">
-              <div className="flex flex-col justify-center space-y-4">
-                <div className="space-y-2">
-                  <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-white">
-                    Join the Athar Family
-                  </h2>
-                  <p className="max-w-[600px] text-white md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                    Ready to make a difference? We welcome volunteers of all backgrounds and skill levels. Whether you
-                    have a few hours a week or want to take on a leadership role, there's a place for you in Athar.
-                  </p>
-                </div>
-                <div className="grid gap-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-white rounded-full"></div>
-                    <span className="text-white">Flexible volunteer opportunities</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-white rounded-full"></div>
-                    <span className="text-white">Training and support provided</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-white rounded-full"></div>
-                    <span className="text-white">Connect with like-minded individuals</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-white rounded-full"></div>
-                    <span className="text-white">Make a real impact in your community</span>
-                  </div>
-                </div>
-              </div>
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-gray-900">Get Involved</CardTitle>
-                  <CardDescription>
-                    Fill out this form and we'll get in touch with you about volunteer opportunities.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  {formSuccess ? (
-                    <div className="text-green-600 font-semibold text-center py-8">Thank you for applying! We'll be in touch soon.</div>
-                  ) : (
-                  <form className="space-y-4" onSubmit={handleFormSubmit}>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <label htmlFor="first-name" className="text-sm font-medium text-gray-700">
-                          First Name
-                        </label>
-                        <Input id="first-name" name="firstName" value={form.firstName} onChange={handleFormChange} placeholder="Enter your first name" />
-                      </div>
-                      <div className="space-y-2">
-                        <label htmlFor="last-name" className="text-sm font-medium text-gray-700">
-                          Last Name
-                        </label>
-                        <Input id="last-name" name="lastName" value={form.lastName} onChange={handleFormChange} placeholder="Enter your last name" />
-                      </div>
-                    </div>
-                    <div className="space-y-2">
-                      <label htmlFor="email" className="text-sm font-medium text-gray-700">
-                        Email
-                      </label>
-                      <Input id="email" name="email" type="email" value={form.email} onChange={handleFormChange} placeholder="Enter your email" />
-                    </div>
-                    <div className="space-y-2">
-                      <label htmlFor="phone" className="text-sm font-medium text-gray-700">
-                        Phone
-                      </label>
-                      <Input id="phone" name="phone" type="tel" value={form.phone} onChange={handleFormChange} placeholder="Enter your phone number" />
-                    </div>
-                    <div className="space-y-2">
-                      <label htmlFor="heardFrom" className="text-sm font-medium text-gray-700">
-                        How did you hear about us?
-                      </label>
-                      <select id="heardFrom" name="heardFrom" value={form.heardFrom} onChange={handleFormChange} className="w-full border rounded px-3 py-2">
-                        <option value="">Select an option</option>
-                        <option value="friend">Friend or Family</option>
-                        <option value="social">Social Media</option>
-                        <option value="event">Event</option>
-                        <option value="search">Search Engine</option>
-                        <option value="other">Other</option>
-                      </select>
-                    </div>
-                    <div className="space-y-2">
-                      <label htmlFor="message" className="text-sm font-medium text-gray-700">
-                        Why do you want to volunteer?
-                      </label>
-                      <Textarea id="message" name="message" value={form.message} onChange={handleFormChange} placeholder="Tell us about your motivation and interests" />
-                    </div>
-                    {formError && <div className="text-red-600 text-sm">{formError}</div>}
-                    <Button className="w-full bg-primary hover:bg-primary-dark" type="submit">Submit Application</Button>
-                  </form>
-                  )}
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </section>
-
-        {/* Contact Section */}
-        <section id="contact" className="w-full py-12 md:py-24 lg:py-32 border-t">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-gray-900">Get in Touch</h2>
-                <p className="max-w-[900px] text-gray-600 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Have questions about our work or want to learn more about volunteering? We'd love to hear from you.
-                </p>
-              </div>
-            </div>
-            <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-3 lg:gap-8">
-              <Card className="text-center">
-                <CardHeader>
-                  <Mail className="h-8 w-8 text-primary mx-auto" />
-                  <CardTitle className="text-gray-900">Email Us</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">info@atharvolunteers.org</p>
-                  <p className="text-gray-600">volunteer@atharvolunteers.org</p>
-                </CardContent>
-              </Card>
-              <Card className="text-center">
-                <CardHeader>
-                  <Phone className="h-8 w-8 text-primary mx-auto" />
-                  <CardTitle className="text-gray-900">Call Us</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">+1 (555) 123-4567</p>
-                  <p className="text-sm text-gray-500">Mon-Fri, 9AM-5PM</p>
-                </CardContent>
-              </Card>
-              <Card className="text-center">
-                <CardHeader>
-                  <MapPin className="h-8 w-8 text-primary mx-auto" />
-                  <CardTitle className="text-gray-900">Visit Us</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">123 Community Center Dr</p>
-                  <p className="text-gray-600">Your City, State 12345</p>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      {/* Footer */}
-      <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t bg-gray-50">
-        <div className="flex items-center gap-2">
-          <Heart className="h-5 w-5 text-primary" />
-          <p className="text-xs text-gray-600">© 2024 Athar Volunteer Team. Making a difference together.</p>
+<section id="join" className="w-full py-12 md:py-24 lg:py-32 bg-primary">
+  <div className="container px-4 md:px-6">
+    <div className="grid gap-6 lg:grid-cols-2 lg:gap-12">
+      <div className="flex flex-col justify-center space-y-4">
+        <div className="space-y-2">
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-white">
+            Join the Athar Family
+          </h2>
+          <p className="max-w-[600px] text-white md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+            Ready to make a difference? We welcome volunteers of all backgrounds and skill levels. Whether you
+            have a few hours a week or want to take on a leadership role, there's a place for you in Athar.
+          </p>
         </div>
-        <nav className="sm:ml-auto flex gap-4 sm:gap-6">
-          <Link href="#" className="text-xs hover:underline underline-offset-4 text-gray-600">
-            Privacy Policy
-          </Link>
-          <Link href="#" className="text-xs hover:underline underline-offset-4 text-gray-600">
-            Terms of Service
-          </Link>
-          <Link href="#" className="text-xs hover:underline underline-offset-4 text-gray-600">
-            Newsletter
-          </Link>
-        </nav>
-      </footer>
+        <div className="grid gap-4">
+          <div className="flex items-center gap-3">
+            <div className="w-2 h-2 bg-white rounded-full"></div>
+            <span className="text-white">Flexible volunteer opportunities</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-2 h-2 bg-white rounded-full"></div>
+            <span className="text-white">Training and support provided</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-2 h-2 bg-white rounded-full"></div>
+            <span className="text-white">Connect with like-minded individuals</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-2 h-2 bg-white rounded-full"></div>
+            <span className="text-white">Make a real impact in your community</span>
+          </div>
+        </div>
+      </div>
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-gray-900">Get Involved</CardTitle>
+          <CardDescription>
+            Fill out this form and we'll get in touch with you about volunteer opportunities.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          {formSuccess ? (
+            <div className="text-green-600 font-semibold text-center py-8">Thank you for applying! We'll be in touch soon.</div>
+          ) : (
+          <form className="space-y-4" onSubmit={handleFormSubmit}>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <label htmlFor="first-name" className="text-sm font-medium text-gray-700">
+                  First Name
+                </label>
+                <Input id="first-name" name="firstName" value={form.firstName} onChange={handleFormChange} placeholder="Enter your first name" />
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="last-name" className="text-sm font-medium text-gray-700">
+                  Last Name
+                </label>
+                <Input id="last-name" name="lastName" value={form.lastName} onChange={handleFormChange} placeholder="Enter your last name" />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <label htmlFor="email" className="text-sm font-medium text-gray-700">
+                Email
+              </label>
+              <Input id="email" name="email" type="email" value={form.email} onChange={handleFormChange} placeholder="Enter your email" />
+            </div>
+            <div className="space-y-2">
+              <label htmlFor="phone" className="text-sm font-medium text-gray-700">
+                Phone
+              </label>
+              <Input id="phone" name="phone" type="tel" value={form.phone} onChange={handleFormChange} placeholder="Enter your phone number" />
+            </div>
+            <div className="space-y-2">
+              <label htmlFor="heardFrom" className="text-sm font-medium text-gray-700">
+                How did you hear about us?
+              </label>
+              <select id="heardFrom" name="heardFrom" value={form.heardFrom} onChange={handleFormChange} className="w-full border rounded px-3 py-2">
+                <option value="">Select an option</option>
+                <option value="friend">Friend or Family</option>
+                <option value="social">Social Media</option>
+                <option value="event">Event</option>
+                <option value="search">Search Engine</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div className="space-y-2">
+              <label htmlFor="message" className="text-sm font-medium text-gray-700">
+                Why do you want to volunteer?
+              </label>
+              <Textarea id="message" name="message" value={form.message} onChange={handleFormChange} placeholder="Tell us about your motivation and interests" />
+            </div>
+            {formError && <div className="text-red-600 text-sm">{formError}</div>}
+            <Button className="w-full bg-primary hover:bg-primary-dark" type="submit">Submit Application</Button>
+          </form>
+          )}
+        </CardContent>
+      </Card>
     </div>
-  )
-}
+  </div>
+</section>
+
+{/* Footer */}
+<footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t bg-gray-50">
+  <div className="flex items-center gap-2">
+    <Heart className="h-5 w-5 text-primary" />
+    <p className="text-xs text-gray-600">© 2024 Athar Volunteer Team. Making a difference together.</p>
+  </div>
+  <nav className="sm:ml-auto flex gap-4 sm:gap-6">
+    <Link href="#" className="text-xs hover:underline underline-offset-4 text-gray-600">
+      Privacy Policy
+    </Link>
+    <Link href="#" className="text-xs hover:underline underline-offset-4 text-gray-600">
+      Terms of Service
+    </Link>
+    <Link href="#" className="text-xs hover:underline underline-offset-4 text-gray-600">
+      Newsletter
+    </Link>
+  </nav>
+</footer>
+
+</main>
+</div>
+  )}
