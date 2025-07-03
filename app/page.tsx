@@ -170,12 +170,12 @@ export default function AtharVolunteerWebsite() {
                 </div>
               </div>
               <div className="flex items-center justify-center">
-                <img
-  src="/htuold.jpg"
-  width="400"
+               <img
+  src="/htubr.jpg"
+  width="600"
   height="400"
-  alt="Athar volunteer team in action"
-  className="aspect-square overflow-hidden rounded-xl object-cover"
+  alt="Community service activities"
+  className="mx-auto aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full"
 />
               </div>
             </div>
@@ -196,13 +196,13 @@ export default function AtharVolunteerWebsite() {
               </div>
             </div>
             <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-2 lg:gap-12">
-              <Image
-                src="/htubr,jpg"
-                width="600"
-                height="400"
-                alt="Community service activities"
-                className="mx-auto aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full"
-              />
+             <img
+  src="/htuold.jpg"
+  width="400"
+  height="400"
+  alt="Athar volunteer team in action"
+  className="aspect-square overflow-hidden rounded-xl object-cover"
+/>
               <div className="flex flex-col justify-center space-y-4">
                 <div className="grid gap-6">
                   <div className="flex items-start gap-4">
