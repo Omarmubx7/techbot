@@ -373,119 +373,9 @@ export default function AtharVolunteerWebsite() {
           </div>
         </section>
 
-        {/* Impact Section */}
-        <section id="impact" className="w-full py-12 md:py-24 lg:py-32 bg-gray-50">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-gray-900">Our Impact</h2>
-                <p className="max-w-[900px] text-gray-600 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Through dedication and teamwork, we've made meaningful contributions to our community.
-                </p>
-              </div>
-            </div>
-            <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-3 lg:gap-8">
-              <Card className="text-center">
-                <CardHeader>
-                  <HandHeart className="h-12 w-12 text-primary mx-auto" />
-                  <CardTitle className="text-3xl font-bold text-gray-900">500+</CardTitle>
-                  <CardDescription>Families Helped</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">
-                    Providing essential support and resources to families in need across our community.
-                  </p>
-                </CardContent>
-              </Card>
-              <Card className="text-center">
-                <CardHeader>
-                  <Calendar className="h-12 w-12 text-primary mx-auto" />
-                  <CardTitle className="text-3xl font-bold text-gray-900">50+</CardTitle>
-                  <CardDescription>Events Organized</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">
-                    Community events, workshops, and initiatives that bring people together for positive change.
-                  </p>
-                </CardContent>
-              </Card>
-              <Card className="text-center">
-                <CardHeader>
-                  <Award className="h-12 w-12 text-primary mx-auto" />
-                  <CardTitle className="text-3xl font-bold text-gray-900">1000+</CardTitle>
-                  <CardDescription>Volunteer Hours</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">
-                    Countless hours dedicated by our amazing volunteers to serve and support our community.
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </section>
+       
 
-        {/* Testimonials Section */}
-        <section id="testimonials" className="w-full py-12 md:py-24 lg:py-32 bg-white">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-gray-900">Volunteer Stories</h2>
-                <p className="max-w-[900px] text-gray-600 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Hear from our volunteers about their experiences and the impact they've made.
-                </p>
-              </div>
-            </div>
-            <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-3 lg:gap-8">
-              <div className="bg-gray-50 rounded-xl p-6 shadow text-center">
-                <p className="text-lg text-gray-800 italic">“Volunteering with Athar has been a life-changing experience. I've met amazing people and truly feel like I'm making a difference.”</p>
-                <div className="mt-4 font-semibold text-primary">Sara Al-Farsi</div>
-                <div className="text-sm text-gray-500">Volunteer, R&D Team</div>
-              </div>
-              <div className="bg-gray-50 rounded-xl p-6 shadow text-center">
-                <p className="text-lg text-gray-800 italic">“The support and training I received helped me grow both personally and professionally. Athar is like a second family.”</p>
-                <div className="mt-4 font-semibold text-primary">Mohammad Saleh</div>
-                <div className="text-sm text-gray-500">Volunteer, Logistics Team</div>
-              </div>
-              <div className="bg-gray-50 rounded-xl p-6 shadow text-center">
-                <p className="text-lg text-gray-800 italic">“Seeing the smiles on the faces of those we help is the best reward. I'm proud to be part of Athar.”</p>
-                <div className="mt-4 font-semibold text-primary">Lina Haddad</div>
-                <div className="text-sm text-gray-500">Volunteer, Media Team</div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Blog/News Section */}
-        <section id="blog" className="w-full py-12 md:py-24 lg:py-32 bg-gray-50">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-gray-900">Latest News</h2>
-                <p className="max-w-[900px] text-gray-600 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Stay updated with our latest activities and announcements.
-                </p>
-              </div>
-            </div>
-            <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-3 lg:gap-8">
-              <div className="bg-white rounded-xl p-6 shadow text-left">
-                <h3 className="text-xl font-bold text-primary mb-2">Athar Launches New Community Program</h3>
-                <p className="text-gray-700 mb-2">We are excited to announce the launch of our new initiative focused on youth empowerment and education. Join us for the kickoff event next month!</p>
-                <span className="text-xs text-gray-400">April 2024</span>
-              </div>
-              <div className="bg-white rounded-xl p-6 shadow text-left">
-                <h3 className="text-xl font-bold text-primary mb-2">Volunteer Training Recap</h3>
-                <p className="text-gray-700 mb-2">Our recent training session was a huge success! Thank you to all who participated and helped make it possible. Stay tuned for more workshops.</p>
-                <span className="text-xs text-gray-400">March 2024</span>
-              </div>
-              <div className="bg-white rounded-xl p-6 shadow text-left">
-                <h3 className="text-xl font-bold text-primary mb-2">Fundraiser Exceeds Goals</h3>
-                <p className="text-gray-700 mb-2">Thanks to your generosity, we surpassed our fundraising goals for the winter campaign. Your support helps us reach more families in need.</p>
-                <span className="text-xs text-gray-400">February 2024</span>
-              </div>
-            </div>
-          </div>
-        </section>
+       
 
         {/* Upcoming Events Section */}
         <section id="events" className="w-full py-12 md:py-24 lg:py-32 bg-white">
@@ -501,7 +391,7 @@ export default function AtharVolunteerWebsite() {
             <div className="mx-auto grid max-w-3xl items-center gap-6 py-12 lg:grid-cols-1 lg:gap-8">
               <div className="bg-gray-50 rounded-xl p-6 shadow flex flex-col md:flex-row md:items-center md:justify-between">
                 <div>
-                  <div className="text-primary font-bold text-lg">May 18, 2024</div>
+                  <div className="text-primary font-bold text-lg">May 18, 2025</div>
                   <div className="text-xl font-semibold text-gray-900">Community Clean-Up Day</div>
                   <div className="text-gray-700">Help us beautify local parks and public spaces. All supplies provided!</div>
                 </div>
@@ -539,23 +429,11 @@ export default function AtharVolunteerWebsite() {
               <a href="https://www.instagram.com/athar.htu?igsh=aHB3MXpuNWpyajN2" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                 <svg width="32" height="32" fill="currentColor" className="text-pink-600" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.974.974 1.246 2.241 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.974.974-2.241 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.308-.974-.974-1.246-2.241-1.308-3.608C2.175 15.647 2.163 15.267 2.163 12s.012-3.584.07-4.85c.062-1.366.334-2.633 1.308-3.608C4.515 2.567 5.782 2.295 7.148 2.233 8.414 2.175 8.794 2.163 12 2.163zm0-2.163C8.741 0 8.332.013 7.052.072 5.771.131 4.659.363 3.678 1.344c-.98.98-1.213 2.092-1.272 3.373C2.013 5.668 2 6.077 2 12c0 5.923.013 6.332.072 7.613.059 1.281.292 2.393 1.272 3.373.98.98 2.092 1.213 3.373 1.272C8.332 23.987 8.741 24 12 24s3.668-.013 4.948-.072c1.281-.059 2.393-.292 3.373-1.272.98-.98 1.213-2.092 1.272-3.373.059-1.281.072-1.69.072-7.613 0-5.923-.013-6.332-.072-7.613-.059-1.281-.292-2.393-1.272-3.373-.98-.98-2.092-1.213-3.373-1.272C15.668.013 15.259 0 12 0z"/><path d="M12 5.838A6.162 6.162 0 0 0 5.838 12 6.162 6.162 0 0 0 12 18.162 6.162 6.162 0 0 0 18.162 12 6.162 6.162 0 0 0 12 5.838zm0 10.162A3.999 3.999 0 1 1 12 8a3.999 3.999 0 0 1 0 7.999zm6.406-11.845a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg>
               </a>
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                <svg width="32" height="32" fill="currentColor" className="text-blue-600" viewBox="0 0 24 24" aria-hidden="true"><path d="M22.675 0h-21.35C.595 0 0 .592 0 1.326v21.348C0 23.406.595 24 1.326 24H12.82v-9.294H9.692V11.01h3.127V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.918.001c-1.504 0-1.797.715-1.797 1.763v2.313h3.587l-.467 3.696h-3.12V24h6.116C23.406 24 24 23.406 24 22.674V1.326C24 .592 23.406 0 22.675 0"/></svg>
-              </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-                <svg width="32" height="32" fill="currentColor" className="text-sky-500" viewBox="0 0 24 24" aria-hidden="true"><path d="M24 4.557a9.83 9.83 0 0 1-2.828.775 4.932 4.932 0 0 0 2.165-2.724c-.951.564-2.005.974-3.127 1.195a4.916 4.916 0 0 0-8.38 4.482C7.691 8.095 4.066 6.13 1.64 3.161c-.542.929-.856 2.01-.857 3.17 0 2.188 1.115 4.117 2.823 5.247a4.904 4.904 0 0 1-2.229-.616c-.054 2.281 1.581 4.415 3.949 4.89a4.936 4.936 0 0 1-2.224.084c.627 1.956 2.444 3.377 4.6 3.417A9.867 9.867 0 0 1 0 21.543a13.94 13.94 0 0 0 7.548 2.209c9.058 0 14.009-7.496 14.009-13.986 0-.21-.005-.423-.015-.633A9.936 9.936 0 0 0 24 4.557z"/></svg>
-              </a>
+              
               <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                 <svg width="32" height="32" fill="currentColor" className="text-blue-800" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.327-.027-3.037-1.849-3.037-1.851 0-2.132 1.445-2.132 2.939v5.667H9.358V9h3.414v1.561h.049c.476-.899 1.637-1.849 3.37-1.849 3.602 0 4.267 2.368 4.267 5.455v6.285zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zm1.777 13.019H3.56V9h3.554v11.452zM22.225 0H1.771C.792 0 0 .771 0 1.723v20.549C0 23.229.792 24 1.771 24h20.451C23.2 24 24 23.229 24 22.271V1.723C24 .771 23.2 0 22.225 0z"/></svg>
               </a>
-            </div>
-            <div className="flex flex-col items-center py-4">
-              <div className="w-full max-w-md bg-white rounded-xl shadow p-6">
-                <div className="text-gray-700 font-semibold mb-2">Instagram Feed</div>
-                <div className="w-full h-40 bg-gray-100 flex items-center justify-center rounded text-gray-400">[Instagram feed preview here]</div>
-                <a href="https://www.instagram.com/athar.htu?igsh=aHB3MXpuNWpyajN2" target="_blank" rel="noopener noreferrer" className="text-pink-600 font-medium mt-2 inline-block">@athar.htu</a>
-              </div>
-            </div>
+            
           </div>
         </section>
 
