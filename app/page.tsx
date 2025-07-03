@@ -4,7 +4,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Heart, Users, HandHeart, Mail, Phone, MapPin, Calendar, Award, Target } from "lucide-react"
-import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useState } from 'react'
 import QuickAccessTools from "@/components/QuickAccessTools"
