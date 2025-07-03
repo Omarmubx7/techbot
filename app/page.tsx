@@ -486,9 +486,9 @@ Hear our story, meet the departments, and see how you can be part of something m
         </div>
       </details>
       <details className="border rounded-lg p-4">
-        <summary className="font-semibold cursor-pointer text-primary">What problems has Athar solved for students or the university?</summary>
+        <summary className="font-semibold cursor-pointer text-primary">What problems will Athar solve for students or the university?</summary>
         <div className="mt-2 text-gray-700">
-          Athar has provided emotional and academic support, managed crises, improved communication between students and administration, and built tech tools to ease student life.
+          Athar will always search how to improve the students experience in HTU
         </div>
       </details>
     
