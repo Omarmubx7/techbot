@@ -388,23 +388,25 @@ export default function AtharVolunteerWebsite() {
             <div className="mx-auto grid max-w-3xl items-center gap-6 py-12 lg:grid-cols-1 lg:gap-8">
               <div className="bg-gray-50 rounded-xl p-6 shadow flex flex-col md:flex-row md:items-center md:justify-between">
                 <div>
-                  <div className="text-primary font-bold text-lg">May 18, 2025</div>
-                  <div className="text-xl font-semibold text-gray-900">Community Clean-Up Day</div>
-                  <div className="text-gray-700">Help us beautify local parks and public spaces. All supplies provided!</div>
+                  <div className="text-primary font-bold text-lg">July 30, 2025</div>
+                  <div className="text-xl font-semibold text-gray-900">Putting stikers on the doors</div>
+                  <div className="text-gray-700">Improve the student experience</div>
                 </div>
               </div>
               <div className="bg-gray-50 rounded-xl p-6 shadow flex flex-col md:flex-row md:items-center md:justify-between">
                 <div>
-                  <div className="text-primary font-bold text-lg">June 2, 2024</div>
-                  <div className="text-xl font-semibold text-gray-900">Youth Empowerment Workshop</div>
-                  <div className="text-gray-700">A day of skill-building and mentorship for local youth. Volunteers needed for activities and logistics.</div>
+                  <div className="text-primary font-bold text-lg">October 20, 2025</div>
+                  <div className="text-xl font-semibold text-gray-900">Welcome 07 – Kickoff Celebration</div>
+                  <div className="text-gray-700">Join us as we welcome the newest generation of HTU students!
+Meet your classmates, explore student life, and kickstart your journey with fun, food, and unforgettable memories.</div>
                 </div>
               </div>
               <div className="bg-gray-50 rounded-xl p-6 shadow flex flex-col md:flex-row md:items-center md:justify-between">
                 <div>
-                  <div className="text-primary font-bold text-lg">June 20, 2024</div>
-                  <div className="text-xl font-semibold text-gray-900">Fundraising Gala</div>
-                  <div className="text-gray-700">Join our annual gala to support ongoing projects. Volunteers needed for event coordination and guest support.</div>
+                  <div className="text-primary font-bold text-lg">Novmber 20, 2025</div>
+                  <div className="text-xl font-semibold text-gray-900">Athar Meet & Greet – Join the Impact</div>
+                  <div className="text-gray-700">Get to know the volunteer team behind HTU’s biggest student initiatives.
+Hear our story, meet the departments, and see how you can be part of something meaningful.</div>
                 </div>
               </div>
             </div>
@@ -455,31 +457,7 @@ export default function AtharVolunteerWebsite() {
       </div>
     </div>
     <div className="mx-auto max-w-2xl py-8 space-y-4">
-      {/* Original FAQs */}
-      <details className="border rounded-lg p-4">
-        <summary className="font-semibold cursor-pointer text-primary">Who can volunteer with Athar?</summary>
-        <div className="mt-2 text-gray-700">
-          Anyone with a passion for helping others is welcome! We accept volunteers of all backgrounds and skill levels.
-        </div>
-      </details>
-      <details className="border rounded-lg p-4">
-        <summary className="font-semibold cursor-pointer text-primary">How do I sign up to volunteer?</summary>
-        <div className="mt-2 text-gray-700">
-          Simply fill out the Join Us form above. Our team will contact you with next steps.
-        </div>
-      </details>
-      <details className="border rounded-lg p-4">
-        <summary className="font-semibold cursor-pointer text-primary">What kind of activities can I help with?</summary>
-        <div className="mt-2 text-gray-700">
-          We offer a variety of opportunities, including event organization, community outreach, education, logistics, and more.
-        </div>
-      </details>
-      <details className="border rounded-lg p-4">
-        <summary className="font-semibold cursor-pointer text-primary">Do I need previous experience?</summary>
-        <div className="mt-2 text-gray-700">
-          No experience is required! We provide training and support for all volunteers.
-        </div>
-      </details>
+      
 
       {/* Custom Athar Questions */}
       <details className="border rounded-lg p-4">
@@ -491,7 +469,7 @@ export default function AtharVolunteerWebsite() {
       <details className="border rounded-lg p-4">
         <summary className="font-semibold cursor-pointer text-primary">How many members are currently in Athar?</summary>
         <div className="mt-2 text-gray-700">
-          Athar has over 70 active members distributed across six departments including R&D, Media, PR, Logistics, Education, and Core Operations.
+          Athar has over 16 active members distributed across six departments including R&D, Media, PR, Logistics, Education, and Core Operations.
         </div>
       </details>
       <details className="border rounded-lg p-4">
@@ -518,12 +496,7 @@ export default function AtharVolunteerWebsite() {
           Athar has provided emotional and academic support, managed crises, improved communication between students and administration, and built tech tools to ease student life.
         </div>
       </details>
-      <details className="border rounded-lg p-4">
-        <summary className="font-semibold cursor-pointer text-primary">Do you collaborate with any external organizations or charities?</summary>
-        <div className="mt-2 text-gray-700">
-          Yes, we work with local NGOs and community groups to expand our impact and offer real-world volunteer experiences to our members.
-        </div>
-      </details>
+    
       <details className="border rounded-lg p-4">
         <summary className="font-semibold cursor-pointer text-primary">Is Athar building any platforms or bots to support students?</summary>
         <div className="mt-2 text-gray-700">
