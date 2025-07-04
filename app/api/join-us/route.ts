@@ -1,41 +1,50 @@
+import { google } from 'googleapis';
 import { NextRequest, NextResponse } from 'next/server';
-import ExcelJS from 'exceljs';
-import fs from 'fs';
 import path from 'path';
+import fs from 'fs';
+
+const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
+const CREDENTIALS_PATH = path.join(process.cwd(), 'app/api/join-us/credentials.json');
+const SPREADSHEET_ID = '1Rwd53eaV27u2_cA4J9i2KWmkSasgfM8AF_5kXxS3NPA';
+const SHEET_NAME = 'Sheet1';
+
+function getAuth() {
+  const credentials = JSON.parse(fs.readFileSync(CREDENTIALS_PATH, 'utf8'));
+  const auth = new google.auth.GoogleAuth({
+    credentials,
+    scopes: SCOPES,
+  });
+  return auth;
+}
 
 export async function POST(req: NextRequest) {
   try {
-    const data = await req.json();
-    const filePath = path.join(process.cwd(), 'join-us-data.xlsx');
-    let workbook;
-    let worksheet;
+    const body = await req.json();
+    const auth = getAuth();
+    const sheets = google.sheets({ version: 'v4', auth });
 
-    // If file exists, load it; otherwise, create a new workbook
-    if (fs.existsSync(filePath)) {
-      workbook = new ExcelJS.Workbook();
-      await workbook.xlsx.readFile(filePath);
-      worksheet = workbook.getWorksheet('Submissions') || workbook.addWorksheet('Submissions');
-    } else {
-      workbook = new ExcelJS.Workbook();
-      worksheet = workbook.addWorksheet('Submissions');
-      worksheet.addRow([
-        'First Name', 'Last Name', 'Email', 'Phone', 'How did you hear about us?', 'Message', 'Date'
-      ]);
-    }
+    // Prepare the row in the order of the sheet columns
+    const values = [
+      [
+        body.firstName || '',
+        body.lastName || '',
+        body.email || '',
+        body.phone || '',
+        body.howDidYouHear || '',
+        body.message || '',
+        new Date().toISOString(), // Date
+      ],
+    ];
 
-    worksheet.addRow([
-      data.firstName,
-      data.lastName,
-      data.email,
-      data.phone,
-      data.heardFrom,
-      data.message,
-      new Date().toLocaleString()
-    ]);
+    await sheets.spreadsheets.values.append({
+      spreadsheetId: SPREADSHEET_ID,
+      range: `${SHEET_NAME}!A1`,
+      valueInputOption: 'RAW',
+      requestBody: { values },
+    });
 
-    await workbook.xlsx.writeFile(filePath);
     return NextResponse.json({ success: true });
-  } catch (error) {
-    return NextResponse.json({ success: false, error: error?.toString() });
+  } catch (error: any) {
+    return NextResponse.json({ success: false, error: error.message }, { status: 500 });
   }
 } 
