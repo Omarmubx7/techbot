@@ -25,3 +25,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# credentials
+app/api/join-us/atharbot-1cbe63c432e2.json
