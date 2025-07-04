@@ -94,10 +94,7 @@ export default function AtharVolunteerWebsite() {
           {[
             { id: 'about', label: 'About' },
             { id: 'departments', label: 'Departments' },
-            { id: 'tools', label: 'Tools' },
-            { id: 'impact', label: 'Our Impact' },
-            { id: 'testimonials', label: 'Stories' },
-            { id: 'blog', label: 'News' },
+            { id: 'tools', label: 'Tools' },   
             { id: 'events', label: 'Events' },
             { id: 'social', label: 'Social' },
             { id: 'team', label: 'Team' },
@@ -391,23 +388,25 @@ export default function AtharVolunteerWebsite() {
             <div className="mx-auto grid max-w-3xl items-center gap-6 py-12 lg:grid-cols-1 lg:gap-8">
               <div className="bg-gray-50 rounded-xl p-6 shadow flex flex-col md:flex-row md:items-center md:justify-between">
                 <div>
-                  <div className="text-primary font-bold text-lg">May 18, 2025</div>
-                  <div className="text-xl font-semibold text-gray-900">Community Clean-Up Day</div>
-                  <div className="text-gray-700">Help us beautify local parks and public spaces. All supplies provided!</div>
+                  <div className="text-primary font-bold text-lg">July 30, 2025</div>
+                  <div className="text-xl font-semibold text-gray-900">Putting sticker on the floors door</div>
+                  <div className="text-gray-700">Improve the student experience</div>
                 </div>
               </div>
               <div className="bg-gray-50 rounded-xl p-6 shadow flex flex-col md:flex-row md:items-center md:justify-between">
                 <div>
-                  <div className="text-primary font-bold text-lg">June 2, 2024</div>
-                  <div className="text-xl font-semibold text-gray-900">Youth Empowerment Workshop</div>
-                  <div className="text-gray-700">A day of skill-building and mentorship for local youth. Volunteers needed for activities and logistics.</div>
+                  <div className="text-primary font-bold text-lg">October 20, 2025</div>
+                  <div className="text-xl font-semibold text-gray-900">Welcome 07 – Kickoff Celebration</div>
+                  <div className="text-gray-700">Join us as we welcome the newest generation of HTU students!
+Meet your classmates, explore student life, and kickstart your journey with fun, food, and unforgettable memories.</div>
                 </div>
               </div>
               <div className="bg-gray-50 rounded-xl p-6 shadow flex flex-col md:flex-row md:items-center md:justify-between">
                 <div>
-                  <div className="text-primary font-bold text-lg">June 20, 2024</div>
-                  <div className="text-xl font-semibold text-gray-900">Fundraising Gala</div>
-                  <div className="text-gray-700">Join our annual gala to support ongoing projects. Volunteers needed for event coordination and guest support.</div>
+                  <div className="text-primary font-bold text-lg">Novmber 20, 2025</div>
+                  <div className="text-xl font-semibold text-gray-900">Athar Meet & Greet – Join the Impact</div>
+                  <div className="text-gray-700">Get to know the volunteer team behind HTU’s biggest student initiatives.
+Hear our story, meet the departments, and see how you can be part of something meaningful.</div>
                 </div>
               </div>
             </div>
@@ -445,36 +444,118 @@ export default function AtharVolunteerWebsite() {
         </section>
 
         {/* FAQ Section */}
-        <section id="faq" className="w-full py-12 md:py-24 lg:py-32 bg-white">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-gray-900">Frequently Asked Questions</h2>
-                <p className="max-w-[900px] text-gray-600 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Find answers to common questions about volunteering with Athar.
-                </p>
-              </div>
-            </div>
-            <div className="mx-auto max-w-2xl py-8">
-              <details className="mb-4 border rounded-lg p-4">
-                <summary className="font-semibold cursor-pointer text-primary">Who can volunteer with Athar?</summary>
-                <div className="mt-2 text-gray-700">Anyone with a passion for helping others is welcome! We accept volunteers of all backgrounds and skill levels.</div>
-              </details>
-              <details className="mb-4 border rounded-lg p-4">
-                <summary className="font-semibold cursor-pointer text-primary">How do I sign up to volunteer?</summary>
-                <div className="mt-2 text-gray-700">Simply fill out the Join Us form above. Our team will contact you with next steps.</div>
-              </details>
-              <details className="mb-4 border rounded-lg p-4">
-                <summary className="font-semibold cursor-pointer text-primary">What kind of activities can I help with?</summary>
-                <div className="mt-2 text-gray-700">We offer a variety of opportunities, including event organization, community outreach, education, logistics, and more.</div>
-              </details>
-              <details className="mb-4 border rounded-lg p-4">
-                <summary className="font-semibold cursor-pointer text-primary">Do I need previous experience?</summary>
-                <div className="mt-2 text-gray-700">No experience is required! We provide training and support for all volunteers.</div>
-              </details>
-            </div>
-          </div>
-        </section>
+<section id="faq" className="w-full py-12 md:py-24 lg:py-32 bg-white">
+  <div className="container px-4 md:px-6">
+    <div className="flex flex-col items-center justify-center space-y-4 text-center">
+      <div className="space-y-2">
+        <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-gray-900">
+          Frequently Asked Questions
+        </h2>
+        <p className="max-w-[900px] text-gray-600 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+          Find answers to common questions about Athar.
+        </p>
+      </div>
+    </div>
+    <div className="mx-auto max-w-2xl py-8 space-y-4">
+      
+
+      {/* Custom Athar Questions */}
+      <details className="border rounded-lg p-4">
+        <summary className="font-semibold cursor-pointer text-primary">What makes Athar different from other student or volunteer groups?</summary>
+        <div className="mt-2 text-gray-700">
+          Athar combines structured organization with innovation and service. We deliver real impact through a mix of field work, student support, and tech-driven solutions.
+        </div>
+      </details>
+      <details className="border rounded-lg p-4">
+        <summary className="font-semibold cursor-pointer text-primary">How many members are currently in Athar?</summary>
+        <div className="mt-2 text-gray-700">
+          Athar has over 16 active members distributed across six departments including R&D, Media, PR, Logistics, Education.
+        </div>
+    
+      </details>
+      <details className="border rounded-lg p-4">
+        <summary className="font-semibold cursor-pointer text-primary">How are decisions made within the team?</summary>
+        <div className="mt-2 text-gray-700">
+          Department leads propose initiatives in regular meetings. Key decisions are discussed and approved by the leadership team collaboratively.
+        </div>
+      </details>
+      <details className="border rounded-lg p-4">
+        <summary className="font-semibold cursor-pointer text-primary">How do new volunteers get trained or assigned tasks?</summary>
+        <div className="mt-2 text-gray-700">
+          New members receive onboarding and are placed in departments based on interest. Coordinators provide training and continuous guidance.
+        </div>
+      </details>
+      <details className="border rounded-lg p-4">
+        <summary className="font-semibold cursor-pointer text-primary">What problems will Athar solve for students or the university?</summary>
+        <div className="mt-2 text-gray-700">
+          Athar will always search how to improve the students experience in HTU
+        </div>
+      </details>
+    
+      <details className="border rounded-lg p-4">
+        <summary className="font-semibold cursor-pointer text-primary">Is Athar building any platforms or bots to support students?</summary>
+        <div className="mt-2 text-gray-700">
+          Yes. Our R&D team is building tools like AtharBot to answer FAQs, guide students, and improve access to services through technology.
+        </div>
+      </details>
+      <details className="border rounded-lg p-4">
+        <summary className="font-semibold cursor-pointer text-primary">What’s the role of the R&D team in Athar?</summary>
+        <div className="mt-2 text-gray-700">
+          The R&D team leads tech innovation by creating digital tools, automating workflows, and collecting feedback to improve our services.
+        </div>
+      </details>
+      <details className="border rounded-lg p-4">
+        <summary className="font-semibold cursor-pointer text-primary">How do you ensure volunteers are well-prepared and skilled?</summary>
+        <div className="mt-2 text-gray-700">
+          We provide onboarding, internal workshops, mentorship, and real-time feedback to support continuous growth and development.
+        </div>
+      </details>
+      <details className="border rounded-lg p-4">
+        <summary className="font-semibold cursor-pointer text-primary">How does the Education/Instructor team operate?</summary>
+        <div className="mt-2 text-gray-700">
+          The Education team designs and delivers learning workshops, campaigns, and resources to empower both volunteers and the broader student body.
+        </div>
+      </details>
+      <details className="border rounded-lg p-4">
+        <summary className="font-semibold cursor-pointer text-primary">Does Athar work closely with university departments (like student affairs)?</summary>
+        <div className="mt-2 text-gray-700">
+          Yes. We collaborate with university offices such as Student Affairs to coordinate events, get approvals, and align our goals with university policies.
+        </div>
+      </details>
+      <details className="border rounded-lg p-4">
+        <summary className="font-semibold cursor-pointer text-primary">How do you handle large-scale events or multi-department operations?</summary>
+        <div className="mt-2 text-gray-700">
+          We assign a lead coordinator, divide roles across departments, and use digital tools for planning and communication to ensure smooth execution.
+        </div>
+      </details>
+      <details className="border rounded-lg p-4">
+        <summary className="font-semibold cursor-pointer text-primary">How do you handle internal conflicts or misunderstandings?</summary>
+        <div className="mt-2 text-gray-700">
+          Conflicts are handled through respectful private dialogue, mediation by department heads, and involvement of leadership when necessary.
+        </div>
+      </details>
+      <details className="border rounded-lg p-4">
+        <summary className="font-semibold cursor-pointer text-primary">Do you have rules for how volunteers should behave?</summary>
+        <div className="mt-2 text-gray-700">
+          Yes. We follow a code of conduct promoting professionalism, respect, and teamwork. Volunteers are expected to uphold Athar’s values in all activities.
+        </div>
+      </details>
+      <details className="border rounded-lg p-4">
+        <summary className="font-semibold cursor-pointer text-primary">What are Athar’s goals for the upcoming semester or year?</summary>
+        <div className="mt-2 text-gray-700">
+          Launch AtharBot, host major events, expand partnerships, and enhance internal training to build a stronger, tech-supported volunteer community.
+        </div>
+      </details>
+      <details className="border rounded-lg p-4">
+        <summary className="font-semibold cursor-pointer text-primary">How will the website or digital tools help you grow?</summary>
+        <div className="mt-2 text-gray-700">
+          These tools will automate routine tasks, improve communication, support onboarding, and extend our impact by offering 24/7 student support online.
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
 
         {/* Team Section */}
         <section id="team" className="w-full py-12 md:py-24 lg:py-32">
@@ -547,170 +628,124 @@ export default function AtharVolunteerWebsite() {
         </section>
 
         {/* Join Us Section */}
-        <section id="join" className="w-full py-12 md:py-24 lg:py-32 bg-primary">
-          <div className="container px-4 md:px-6">
-            <div className="grid gap-6 lg:grid-cols-2 lg:gap-12">
-              <div className="flex flex-col justify-center space-y-4">
-                <div className="space-y-2">
-                  <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-white">
-                    Join the Athar Family
-                  </h2>
-                  <p className="max-w-[600px] text-white md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                    Ready to make a difference? We welcome volunteers of all backgrounds and skill levels. Whether you
-                    have a few hours a week or want to take on a leadership role, there's a place for you in Athar.
-                  </p>
-                </div>
-                <div className="grid gap-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-white rounded-full"></div>
-                    <span className="text-white">Flexible volunteer opportunities</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-white rounded-full"></div>
-                    <span className="text-white">Training and support provided</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-white rounded-full"></div>
-                    <span className="text-white">Connect with like-minded individuals</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-white rounded-full"></div>
-                    <span className="text-white">Make a real impact in your community</span>
-                  </div>
-                </div>
-              </div>
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-gray-900">Get Involved</CardTitle>
-                  <CardDescription>
-                    Fill out this form and we'll get in touch with you about volunteer opportunities.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  {formSuccess ? (
-                    <div className="text-green-600 font-semibold text-center py-8">Thank you for applying! We'll be in touch soon.</div>
-                  ) : (
-                  <form className="space-y-4" onSubmit={handleFormSubmit}>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <label htmlFor="first-name" className="text-sm font-medium text-gray-700">
-                          First Name
-                        </label>
-                        <Input id="first-name" name="firstName" value={form.firstName} onChange={handleFormChange} placeholder="Enter your first name" />
-                      </div>
-                      <div className="space-y-2">
-                        <label htmlFor="last-name" className="text-sm font-medium text-gray-700">
-                          Last Name
-                        </label>
-                        <Input id="last-name" name="lastName" value={form.lastName} onChange={handleFormChange} placeholder="Enter your last name" />
-                      </div>
-                    </div>
-                    <div className="space-y-2">
-                      <label htmlFor="email" className="text-sm font-medium text-gray-700">
-                        Email
-                      </label>
-                      <Input id="email" name="email" type="email" value={form.email} onChange={handleFormChange} placeholder="Enter your email" />
-                    </div>
-                    <div className="space-y-2">
-                      <label htmlFor="phone" className="text-sm font-medium text-gray-700">
-                        Phone
-                      </label>
-                      <Input id="phone" name="phone" type="tel" value={form.phone} onChange={handleFormChange} placeholder="Enter your phone number" />
-                    </div>
-                    <div className="space-y-2">
-                      <label htmlFor="heardFrom" className="text-sm font-medium text-gray-700">
-                        How did you hear about us?
-                      </label>
-                      <select id="heardFrom" name="heardFrom" value={form.heardFrom} onChange={handleFormChange} className="w-full border rounded px-3 py-2">
-                        <option value="">Select an option</option>
-                        <option value="friend">Friend or Family</option>
-                        <option value="social">Social Media</option>
-                        <option value="event">Event</option>
-                        <option value="search">Search Engine</option>
-                        <option value="other">Other</option>
-                      </select>
-                    </div>
-                    <div className="space-y-2">
-                      <label htmlFor="message" className="text-sm font-medium text-gray-700">
-                        Why do you want to volunteer?
-                      </label>
-                      <Textarea id="message" name="message" value={form.message} onChange={handleFormChange} placeholder="Tell us about your motivation and interests" />
-                    </div>
-                    {formError && <div className="text-red-600 text-sm">{formError}</div>}
-                    <Button className="w-full bg-primary hover:bg-primary-dark" type="submit">Submit Application</Button>
-                  </form>
-                  )}
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </section>
-
-        {/* Contact Section */}
-        <section id="contact" className="w-full py-12 md:py-24 lg:py-32 border-t">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-gray-900">Get in Touch</h2>
-                <p className="max-w-[900px] text-gray-600 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Have questions about our work or want to learn more about volunteering? We'd love to hear from you.
-                </p>
-              </div>
-            </div>
-            <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-3 lg:gap-8">
-              <Card className="text-center">
-                <CardHeader>
-                  <Mail className="h-8 w-8 text-primary mx-auto" />
-                  <CardTitle className="text-gray-900">Email Us</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">info@atharvolunteers.org</p>
-                  <p className="text-gray-600">volunteer@atharvolunteers.org</p>
-                </CardContent>
-              </Card>
-              <Card className="text-center">
-                <CardHeader>
-                  <Phone className="h-8 w-8 text-primary mx-auto" />
-                  <CardTitle className="text-gray-900">Call Us</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">+1 (555) 123-4567</p>
-                  <p className="text-sm text-gray-500">Mon-Fri, 9AM-5PM</p>
-                </CardContent>
-              </Card>
-              <Card className="text-center">
-                <CardHeader>
-                  <MapPin className="h-8 w-8 text-primary mx-auto" />
-                  <CardTitle className="text-gray-900">Visit Us</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">123 Community Center Dr</p>
-                  <p className="text-gray-600">Your City, State 12345</p>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      {/* Footer */}
-      <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t bg-gray-50">
-        <div className="flex items-center gap-2">
-          <Heart className="h-5 w-5 text-primary" />
-          <p className="text-xs text-gray-600">© 2024 Athar Volunteer Team. Making a difference together.</p>
+<section id="join" className="w-full py-12 md:py-24 lg:py-32 bg-primary">
+  <div className="container px-4 md:px-6">
+    <div className="grid gap-6 lg:grid-cols-2 lg:gap-12">
+      <div className="flex flex-col justify-center space-y-4">
+        <div className="space-y-2">
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-white">
+            Join the Athar Family
+          </h2>
+          <p className="max-w-[600px] text-white md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+            Ready to make a difference? We welcome volunteers of all backgrounds and skill levels. Whether you
+            have a few hours a week or want to take on a leadership role, there's a place for you in Athar.
+          </p>
         </div>
-        <nav className="sm:ml-auto flex gap-4 sm:gap-6">
-          <Link href="#" className="text-xs hover:underline underline-offset-4 text-gray-600">
-            Privacy Policy
-          </Link>
-          <Link href="#" className="text-xs hover:underline underline-offset-4 text-gray-600">
-            Terms of Service
-          </Link>
-          <Link href="#" className="text-xs hover:underline underline-offset-4 text-gray-600">
-            Newsletter
-          </Link>
-        </nav>
-      </footer>
+        <div className="grid gap-4">
+          <div className="flex items-center gap-3">
+            <div className="w-2 h-2 bg-white rounded-full"></div>
+            <span className="text-white">Flexible volunteer opportunities</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-2 h-2 bg-white rounded-full"></div>
+            <span className="text-white">Training and support provided</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-2 h-2 bg-white rounded-full"></div>
+            <span className="text-white">Connect with like-minded individuals</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-2 h-2 bg-white rounded-full"></div>
+            <span className="text-white">Make a real impact in your community</span>
+          </div>
+        </div>
+      </div>
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-gray-900">Get Involved</CardTitle>
+          <CardDescription>
+            Fill out this form and we'll get in touch with you about volunteer opportunities.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          {formSuccess ? (
+            <div className="text-green-600 font-semibold text-center py-8">Thank you for applying! We'll be in touch soon.</div>
+          ) : (
+          <form className="space-y-4" onSubmit={handleFormSubmit}>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <label htmlFor="first-name" className="text-sm font-medium text-gray-700">
+                  First Name
+                </label>
+                <Input id="first-name" name="firstName" value={form.firstName} onChange={handleFormChange} placeholder="Enter your first name" />
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="last-name" className="text-sm font-medium text-gray-700">
+                  Last Name
+                </label>
+                <Input id="last-name" name="lastName" value={form.lastName} onChange={handleFormChange} placeholder="Enter your last name" />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <label htmlFor="email" className="text-sm font-medium text-gray-700">
+                Email
+              </label>
+              <Input id="email" name="email" type="email" value={form.email} onChange={handleFormChange} placeholder="Enter your email" />
+            </div>
+            <div className="space-y-2">
+              <label htmlFor="phone" className="text-sm font-medium text-gray-700">
+                Phone
+              </label>
+              <Input id="phone" name="phone" type="tel" value={form.phone} onChange={handleFormChange} placeholder="Enter your phone number" />
+            </div>
+            <div className="space-y-2">
+              <label htmlFor="heardFrom" className="text-sm font-medium text-gray-700">
+                How did you hear about us?
+              </label>
+              <select id="heardFrom" name="heardFrom" value={form.heardFrom} onChange={handleFormChange} className="w-full border rounded px-3 py-2">
+                <option value="">Select an option</option>
+                <option value="friend">Friend or Family</option>
+                <option value="social">Social Media</option>
+                <option value="event">Event</option>
+                <option value="search">Search Engine</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div className="space-y-2">
+              <label htmlFor="message" className="text-sm font-medium text-gray-700">
+                Why do you want to volunteer?
+              </label>
+              <Textarea id="message" name="message" value={form.message} onChange={handleFormChange} placeholder="Tell us about your motivation and interests" />
+            </div>
+            {formError && <div className="text-red-600 text-sm">{formError}</div>}
+            <Button className="w-full bg-primary hover:bg-primary-dark" type="submit">Submit Application</Button>
+          </form>
+          )}
+        </CardContent>
+      </Card>
     </div>
-  )
-}
+  </div>
+</section>
+
+{/* Footer */}
+<footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t bg-gray-50">
+  <div className="flex items-center gap-2">
+    <Heart className="h-5 w-5 text-primary" />
+    <p className="text-xs text-gray-600">© 2025 Athar Volunteer Team. Making a difference together.</p>
+  </div>
+  <nav className="sm:ml-auto flex gap-4 sm:gap-6">
+    <Link href="#" className="text-xs hover:underline underline-offset-4 text-gray-600">
+      Privacy Policy
+    </Link>
+    <Link href="#" className="text-xs hover:underline underline-offset-4 text-gray-600">
+      Terms of Service
+    </Link>
+    <Link href="#" className="text-xs hover:underline underline-offset-4 text-gray-600">
+      Newsletter
+    </Link>
+  </nav>
+</footer>
+
+</main>
+</div>
+  )}
