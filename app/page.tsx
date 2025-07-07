@@ -99,7 +99,6 @@ export default function AtharVolunteerWebsite() {
             { id: 'social', label: 'Social' },
             { id: 'team', label: 'Team' },
             { id: 'join', label: 'Join Us' },
-            { id: 'contact', label: 'Contact' },
           ].map((item) => (
             <Link
               key={item.id}
