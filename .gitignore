@@ -27,4 +27,5 @@ yarn-error.log*
 next-env.d.ts
 
 # credentials
-app/api/join-us/atharbot-1cbe63c432e2.json
+app/api/join-us/atharbot-a3ea0c22358f.json
+/app/generated/prisma
